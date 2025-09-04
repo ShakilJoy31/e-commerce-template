@@ -1,4 +1,4 @@
-import Footer from "@/components/navigations/Footer";
+// import Footer from "@/components/navigations/Footer";
 import PublicNav from "@/components/navigations/PublicNav";
 
 export default function MainLayout({

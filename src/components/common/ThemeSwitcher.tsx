@@ -19,28 +19,7 @@ const ThemeSwitcher = () => {
     setIsOpen(false);
   };
 
-  // Animation variants
-  const dropdownVariants = {
-    closed: {
-      opacity: 0,
-      scale: 0.95,
-      y: -10,
-      transition: {
-        duration: 0.15,
-        ease: "easeOut"
-      }
-    },
-    open: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.2,
-        ease: "easeOut"
-      }
-    }
-  };
-
+  
   const itemVariants = {
     closed: { x: -10, opacity: 0 },
     open: { x: 0, opacity: 1 }
