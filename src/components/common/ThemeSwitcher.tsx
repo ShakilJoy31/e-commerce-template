@@ -35,7 +35,7 @@ const ThemeSwitcher = () => {
       {/* Trigger Button */}
       <motion.button
         onClick={toggleOpen}
-        className="inline-flex items-center justify-center p-2 cursor-pointer rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200"
+        className="inline-flex items-center justify-center p-2 cursor-pointer rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 bg-gray-100 dark:hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Toggle theme"

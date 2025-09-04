@@ -15,7 +15,7 @@ const navLinks = [
   { name: "Home", path: "/" },
   { name: "Product", path: "/projects" },
   { name: "About Us", path: "/affiliate" },
-  { name: "Login", path: "/affiliate" },
+  { name: "Login", path: "/login" },
   { name: "Terms & Condition", path: "/technology" },
 ];
 
@@ -117,8 +117,8 @@ export default function PublicNav() {
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
         ? "bg-white/90 dark:bg-[#050117]/90 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-800"
-        : "bg-white dark:bg-[#050117] border-b border-gray-200 dark:border-gray-800"
-        }`}
+        : "bg-transparent border-b border-transparent"
+        } `}
     >
       <div className="max-w-7xl mx-auto w-full flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
         {/* Logo */}
@@ -139,7 +139,7 @@ export default function PublicNav() {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <motion.nav 
+        <motion.nav
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -154,15 +154,15 @@ export default function PublicNav() {
               <Link
                 href={link.path}
                 className={`relative px-4 py-2 font-medium transition-colors duration-300 ${isActiveLink(link.path)
-                  ? "text-blue-600 dark:text-blue-400"
-                  : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  ? `${isScrolled ? 'text-black dark:text-white ' : 'text-white'} `
+                  : `${isScrolled ? 'text-gray-800 dark:text-gray-300 hover:text-gray-600' : 'text-white'} `
                   }`}
               >
                 {link.name}
                 {isActiveLink(link.path) && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400"
+                    className={`absolute bottom-0 left-0 right-0 h-0.5 ${isScrolled ? 'bg-black dark:bg-white' : 'bg-white'}`}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -171,8 +171,10 @@ export default function PublicNav() {
           ))}
         </motion.nav>
 
+
+
         {/* Desktop Right Side */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -189,7 +191,7 @@ export default function PublicNav() {
         </motion.div>
 
         {/* Mobile Menu Button */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
@@ -258,7 +260,7 @@ export default function PublicNav() {
                 </Link>
               </motion.div>
               <div className="flex xs:hidden items-center justify-between pt-4 ">
-                
+
                 <LanguageSwitcher />
                 <ThemeSwitcher />
               </div>
@@ -266,7 +268,6 @@ export default function PublicNav() {
           </motion.div>
         )}
       </AnimatePresence>
-
 
     </motion.header>
   );

@@ -268,11 +268,11 @@ export default function LanguageSwitcher() {
           <button
             type="button"
             onClick={() => translateTo("en")}
-            className="p-1 hover:bg-gray-700  hover:border-blue-600 hover:cursor-pointer rounded-full "
+            className="p-1 hover:bg-gray-700 border-l hover:border-blue-600 hover:cursor-pointer rounded-tr-lg rounded-br-lg text-black hover:text-white dark:text-white dark:hover:text-black"
             aria-label="Reset to English"
             title="Reset to English"
           >
-            <span className="text-black hover:text-white dark:text-white dark:hover:text-black "><RxReset size={25}></RxReset></span>
+            <span><RxReset size={30}></RxReset></span>
           </button>
 
         </div>

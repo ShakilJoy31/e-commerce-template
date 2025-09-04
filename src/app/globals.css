@@ -127,41 +127,7 @@
   background-color: #131620;
 }
 
-/* Shakil */
-/* For Chrome, Safari, Edge */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f53e32;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
 
-/* For Firefox */
-input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f53e32;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* For IE */
-input[type="range"]::-ms-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f53e32;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -278,41 +244,6 @@ input[type="range"]::-ms-thumb {
   }
 }
 
-/* Shakil */
-/* For Chrome, Safari, Edge */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f53e32;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* For Firefox */
-input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f53e32;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* For IE */
-input[type="range"]::-ms-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f53e32;
-  cursor: pointer;
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
 
 /* DATA LOADER CSS */
 /* From Uiverse.io by david-mohseni */
@@ -416,14 +347,6 @@ body {
   }
 }
 
-ul li p,
-td p {
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
-}
-
-/* Table styles (keep your existing table styles) */
-/* Table styles */
 .tiptap table {
   border-collapse: collapse;
   margin: 1em 0;
@@ -467,50 +390,6 @@ td p {
   width: 4px;
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* styles.css */
-.mySwiper {
-  width: 100%;
-  height: 100%;
-}
-
-.mySwiper .swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Adjust the card size on different screens */
-@media (max-width: 768px) {
-  .mySwiper {
-    width: 90%;
-    height: 400px;
-  }
-}
-
-
-.mySwiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  position: relative;
-  transition: transform 0.3s ease;
-  transform-origin: bottom center;
-}
 
 /* Hide Google top banner iframe completely */
 .goog-te-banner-frame.skiptranslate,
@@ -525,11 +404,6 @@ body {
   position: static !important;
   margin-top: 0px !important;
   padding-top: 0px !important;
-}
-
-/* Kill the white overlay frame */
-body > .skiptranslate {
-  display: none !important;
 }
 
 /* Hide Google logo & gadget */
@@ -558,46 +432,62 @@ body > .skiptranslate {
   background: #6a5aff;
 }
 
-/* Image rotation with animation...... */
-@keyframes horizontal-rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-.rotating-image-X {
-  animation: horizontal-rotate 45s linear infinite;
-  transform-style: preserve-3d;
-  transform-origin: center center;
-  will-change: transform;
-}
 
-.slider {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* New added. */
+
+.line-clamp-1 {
   overflow: hidden;
-  position: relative;
-  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
-.slideTrack {
-  display: flex;
-  animation: scroll 20s linear infinite;
-  width: calc(250px * 18); /* adjust based on logo size & count */
-}
-
-.slide {
-  flex: 0 0 auto;
-  width: 120px; /* logo width */
-  margin-right: 48px; /* space between logos */
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
