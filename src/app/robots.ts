@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '*',
       disallow: '/admin/*',
     },
-    sitemap: 'https://tech-element-it-ltd.vercel.app/sitemap.xml',
+    sitemap: 'https://e-commerce-template-olive-seven.vercel.app/sitemap.xml',
   }
 }

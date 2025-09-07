@@ -1,10 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./lib/ThemeProvider";
-import { LocaleProvider } from "./lib/LocaleProvider";
+import { ThemeProvider } from "../components/reusable-components/ThemeProvider";
+import { LocaleProvider } from "../components/reusable-components/LocaleProvider";
 import { appConfiguration } from "@/utils/constant/appConfiguration";
-import Providers from "./lib/Providers";
+import Providers from "../hooks/Providers";
 import { Toaster } from "react-hot-toast";
+import { CartProvider } from "@/hooks/CartContext";
 
 
 const geistSans = Geist({
@@ -38,7 +39,7 @@ export default function RootLayout({
             defaultTheme="light"
             storageKey={`${appConfiguration.appCode}theme`}
           >
-            <LocaleProvider>{children}</LocaleProvider>
+            <LocaleProvider><CartProvider>{children}</CartProvider></LocaleProvider>
           </ThemeProvider>
           <Toaster/>
         </Providers>

@@ -1,125 +1,150 @@
 // components/Footer.tsx
-import { FaTelegramPlane, FaWhatsapp, FaInstagram, FaFacebookF } from "react-icons/fa";
-import { MdLocationOn, MdEmail } from "react-icons/md";
+import { FaTelegramPlane, FaWhatsapp, FaInstagram, FaFacebookF, FaPhoneAlt } from "react-icons/fa";
+import { MdLocationOn, MdEmail, MdPayment } from "react-icons/md";
 import Image from "next/image";
-// import siteLogo from "@/assets/Icons/Site-icon.png";
-import siteLogo from "@/assets/Logo/navber-logo.png";
+import siteLogo from "@/assets/Home/demo_logo.png";
 import Paragraph from "../reusable-components/Paragraph";
 import Heading from "../reusable-components/Heading";
 import Link from "next/link";
+import { footerSvg } from "@/utils/constant/footerWaveSvg";
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-black text-gray-700 dark:text-gray-300 border-t border-gray-300 pt-8 md:pt-10">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
-        {/* Logo & Info */}
-        <div className="col-span-2">
-          <div className="flex gap-x-[29px] mb-3 md:mb-4">
+    <footer className="bg-gradient-to-b from-[#0099FF] to-black text-gray-300 relative">
+     {footerSvg}
+
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 pt-10 pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Company Info */}
+        <div className="lg:col-span-1">
+          <div className="mb-4">
             <Image
               src={siteLogo}
-              alt="Tech Element IT Ltd"
+              alt="E-Shop Logo"
               width={160}
               height={60}
-              className="w-48 md:w-64 h-8 md:h-12"
+              className="w-48 h-12 object-contain"
             />
-            {/* <Paragraph className="text-xs md:text-sm w-full lg:w-[224px] text-center">Instant is a visual, we are ready to give you services</Paragraph> */}
           </div>
-
-          <div className="flex items-start gap-2 mb-2 md:mb-3">
-            <MdLocationOn className="text-[#1776BB] text-lg md:text-xl mt-0.5 flex-shrink-0" />
-            <Paragraph className="text-xs md:text-sm">
-              Lavel, J-16, Lily Pond Center, 3 RK Mission Road, Ittefeq mor, Motijheel, Dhaka-1203
+          <Paragraph className="text-sm mb-4">
+            Your one-stop destination for quality products at affordable prices. We offer the best shopping experience with fast delivery and excellent customer service.
+          </Paragraph>
+          
+          <div className="flex items-start gap-2 mb-3">
+            <MdLocationOn className="text-blue-400 text-lg mt-0.5 flex-shrink-0" />
+            <Paragraph className="text-sm">
+              123 Commerce Street, Shopping District, City Center, 10001
             </Paragraph>
           </div>
           
-          <div className="flex items-center gap-2 mb-4 md:mb-0">
-            <MdEmail className="text-[#1776BB] text-lg md:text-xl flex-shrink-0" />
-            <Paragraph className="text-xs md:text-sm">techelementit@gmail.com</Paragraph>
+          <div className="flex items-center gap-2 mb-3">
+            <FaPhoneAlt className="text-blue-400 text-lg flex-shrink-0" />
+            <Paragraph className="text-sm">+1 (555) 123-4567</Paragraph>
+          </div>
+          
+          <div className="flex items-center gap-2 mb-6">
+            <MdEmail className="text-blue-400 text-lg flex-shrink-0" />
+            <Paragraph className="text-sm">support@eshop.com</Paragraph>
           </div>
 
           {/* Social Icons */}
-          <div className="flex gap-2 md:gap-3 mt-4 md:mt-6">
-            <Link href="#" className="bg-[#1776BB] hover:bg-[#eb5e30] duration-200 text-white p-2 md:p-3 rounded-full text-sm md:text-base">
-              <FaTelegramPlane />
+          <div className="flex gap-3">
+            <Link href="#" className="bg-blue-600 hover:bg-blue-500 duration-200 text-white p-2 rounded-full text-sm">
+              <FaFacebookF />
             </Link>
-            <Link href="#" className="bg-[#1776BB] hover:bg-[#eb5e30] duration-200 text-white p-2 md:p-3 rounded-full text-sm md:text-base">
-              <FaWhatsapp />
-            </Link>
-            <Link href="#" className="bg-[#1776BB] hover:bg-[#eb5e30] duration-200 text-white p-2 md:p-3 rounded-full text-sm md:text-base">
+            <Link href="#" className="bg-blue-600 hover:bg-blue-500 duration-200 text-white p-2 rounded-full text-sm">
               <FaInstagram />
             </Link>
-            <Link href="#" className="bg-[#1776BB] hover:bg-[#eb5e30] duration-200 text-white p-2 md:p-3 rounded-full text-sm md:text-base">
-              <FaFacebookF />
+            <Link href="#" className="bg-blue-600 hover:bg-blue-500 duration-200 text-white p-2 rounded-full text-sm">
+              <FaWhatsapp />
+            </Link>
+            <Link href="#" className="bg-blue-600 hover:bg-blue-500 duration-200 text-white p-2 rounded-full text-sm">
+              <FaTelegramPlane />
             </Link>
           </div>
         </div>
 
-        {/* Top Trends */}
+        {/* Shop Categories */}
         <div>
-          <Heading className="font-bold mb-2 md:mb-4 text-sm md:text-base">Top Trends</Heading>
-          <ul className="space-y-1 md:space-y-2 text-xs md:text-sm">
+          <Heading className="font-bold mb-4 text-white text-lg">Shop Categories</Heading>
+          <ul className="space-y-2 text-sm">
             {[
-              "Full-stack Developer",
-              "Front-End Development",
-              "Back-End Development",
-              "Our works",
-              "Node.js Developer",
-              "React Developer",
-              "Android Developer",
-              "iOS Developer"
+              "Electronics",
+              "Fashion",
+              "Home & Kitchen",
+              "Beauty & Health",
+              "Sports & Fitness",
+              "Books & Stationery",
+              "Toys & Games",
+              "Food & Grocery"
             ].map((item, index) => (
-              <li key={index} className="hover:text-blue-500 cursor-pointer">{item}</li>
+              <li key={index} className="hover:text-blue-400 cursor-pointer transition-colors">{item}</li>
             ))}
           </ul>
         </div>
 
-        {/* Quick Links */}
+        {/* Customer Service */}
         <div>
-          <Heading className="font-bold mb-2 md:mb-4 text-sm md:text-base">Quick Links</Heading>
-          <ul className="space-y-1 md:space-y-2 text-xs md:text-sm">
+          <Heading className="font-bold mb-4 text-white text-lg">Customer Service</Heading>
+          <ul className="space-y-2 text-sm">
             {[
-              "About Us",
               "Contact Us",
-              "Technology",
-              "Our works",
-              "Services",
-              "Blogs"
+              "FAQs",
+              "Shipping Information",
+              "Returns & Exchanges",
+              "Track Order",
+              "Size Guide",
+              "Gift Cards",
+              "Wishlist"
             ].map((item, index) => (
-              <li key={index} className="hover:text-blue-500 cursor-pointer">{item}</li>
+              <li key={index} className="hover:text-blue-400 cursor-pointer transition-colors">{item}</li>
             ))}
           </ul>
         </div>
 
-        {/* Services */}
-        <div className="col-span-2 sm:col-span-1">
-          <Heading className="font-bold mb-2 md:mb-4 text-sm md:text-base">Services</Heading>
-          <ul className="space-y-1 md:space-y-2 text-xs md:text-sm grid grid-cols-1">
-            {[
-              "Full-stack Developer",
-              "Front-End Development",
-              "Back-End Development",
-              "Our works",
-              "Node.js Developer",
-              "React Developer",
-              "Android Developer",
-              "iOS Developer"
-            ].map((item, index) => (
-              <li key={index} className="hover:text-blue-500 cursor-pointer">{item}</li>
-            ))}
-          </ul>
+        {/* Newsletter */}
+        <div>
+          <Heading className="font-bold mb-4 text-white text-lg">Newsletter</Heading>
+          <Paragraph className="text-sm mb-4">
+            Subscribe to our newsletter for special offers and updates
+          </Paragraph>
+          <div className="flex flex-col gap-3">
+            <input 
+              type="email" 
+              placeholder="Your email address" 
+              className="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button className="bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 hover:bg-blue-500 text-white py-2 rounded text-sm font-medium transition-colors">
+              Subscribe
+            </button>
+          </div>
+          
+          <div className="mt-6">
+            <Heading className="font-bold mb-3 text-white text-sm">Payment Methods</Heading>
+            <div className="flex gap-2">
+              <MdPayment className="text-2xl bg-white p-1 rounded" />
+              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">VISA</div>
+              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">MC</div>
+              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">AMEX</div>
+              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">PP</div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-[1280px] mx-auto mt-8 md:mt-10 border-t border-gray-400 flex flex-col md:flex-row justify-between items-center py-4 ">
-        <Paragraph className="flex items-center gap-1 mb-2 md:mb-0 text-[14px] ">
-          COURTESY 2023 © ALL RIGHTS RESERVED.
+      <div className="h-[1px] w-full bg-[#0099FF] "></div>
+      <div className="container mx-auto mt-6 pb-4 flex flex-col md:flex-row justify-between items-center px-4">
+        <Paragraph className="text-xs text-gray-500 mb-2 md:mb-0">
+          © 2023 E-Shop. All Rights Reserved.
         </Paragraph>
-        <Paragraph className="flex gap-2 md:gap-4">
-          <span className="hover:text-blue-500 cursor-pointer text-[14px]">PRIVACY POLICY</span>
-          <span>|</span>
-          <span className="hover:text-blue-500 cursor-pointer text-[14px]">TERMS & CONDITIONS</span>
-        </Paragraph>
+        <div className="flex gap-4">
+          <span className=" cursor-pointer text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</span>
+          <span className="text-gray-600">|</span>
+          <span className=" cursor-pointer text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms & Conditions</span>
+          <span className="text-gray-600">|</span>
+          <span className=" cursor-pointer text-xs text-gray-500 hover:text-gray-300 transition-colors">Cookie Policy</span>
+        </div>
       </div>
     </footer>
   );

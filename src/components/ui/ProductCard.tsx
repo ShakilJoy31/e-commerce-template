@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 import { CardBody, CardContainer, CardItem } from "./3d-card";
 import { ProductCardProps } from "@/types/product/productCard";
+import { useCart } from "@/hooks/CartContext";
 
 
 
@@ -15,13 +16,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   showCategory = true,
   showRating = true,
   showActions = true,
-  onAddToCart,
   onQuickView,
 }) => {
+  const { addToCart } = useCart();
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    onAddToCart?.(product);
+    addToCart(product, 1);
   };
 
   const handleQuickView = (e: React.MouseEvent) => {
@@ -70,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
 
         {/* Product Image */}
-        <CardItem translateZ="100" className="w-full mt-7 relative">
+        <CardItem translateZ="100" className="w-full mt-8 relative">
           <div className={`relative w-full ${imageHeight} overflow-hidden rounded-xl px-1 py-4 `}>
             <Image
               src={product.imageUrl}
@@ -106,11 +107,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {[...Array(5)].map((_, i) => (
                 <svg
                   key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(product.rating!)
-                      ? "text-yellow-400"
-                      : "text-gray-300"
-                  }`}
+                  className={`w-4 h-4 ${i < Math.floor(product.rating!)
+                    ? "text-yellow-400"
+                    : "text-gray-300"
+                    }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -156,7 +156,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             >
               <FaHeart size={18} />
             </CardItem>
-            
+
             <CardItem
               translateZ="20"
               as="button"

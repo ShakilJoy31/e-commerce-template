@@ -1,4 +1,5 @@
-// import Footer from "@/components/navigations/Footer";
+import Cart from "@/components/navigations/Cart";
+import Footer from "@/components/navigations/Footer";
 import PublicNav from "@/components/navigations/PublicNav";
 
 export default function MainLayout({
@@ -10,7 +11,8 @@ export default function MainLayout({
     <>
       <PublicNav />
       <div>{children}</div>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
+       <Cart />
     </>
   );
 }

@@ -5,11 +5,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import navbarLogo from "@/assets/Home/demo_logo.png";
-import { Button } from "@/components/ui/button";
-import ThemeSwitcher from "../common/ThemeSwitcher";
+import ThemeSwitcher from "../reusable-components/ThemeSwitcher";
 import { Menu, X } from "lucide-react";
 import LanguageSwitcher from "../reusable-components/LanguageSwitcher";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import Button from "../reusable-components/Button";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -184,7 +184,7 @@ export default function PublicNav() {
           <LanguageSwitcher />
           <Button
             onClick={() => router.push("/contact")}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-6 py-2 rounded-md text-white font-medium transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg"
+            className="bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 px-6 py-2 rounded-md text-white font-medium transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg"
           >
             Contact Us
           </Button>
@@ -254,7 +254,7 @@ export default function PublicNav() {
               >
                 <Link
                   href="/contact"
-                  className="block w-full px-4 py-3 rounded-lg text-black dark:text-white font-medium transition-all duration-300"
+                  className="block hover:cursor-pointer w-full px-4 py-3 rounded-lg text-black dark:text-white font-medium transition-all duration-300"
                 >
                   Contact Us
                 </Link>

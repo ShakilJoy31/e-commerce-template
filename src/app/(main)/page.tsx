@@ -1,8 +1,11 @@
 
 import HomeBanner from "@/components/Home/Banner";
+import CategorySection from "@/components/Home/CategorySection";
 import NewProduct from "@/components/Home/NewProduct";
+import NewsletterSection from "@/components/Home/NewsletterSection";
 import OfferProducts from "@/components/Home/OfferedProducts";
 import TopSoldProducts from "@/components/Home/TopSoldProduct";
+import WhyUs from "@/components/Home/WhyUs";
 import { generateDynamicMetadata } from "@/metadata/generateMetadata";
 
 export async function generateMetadata() {
@@ -25,6 +28,9 @@ const Home = () => {
       <NewProduct></NewProduct>
       <TopSoldProducts></TopSoldProducts>
       <OfferProducts></OfferProducts>
+      <CategorySection></CategorySection>
+      <WhyUs></WhyUs>
+      <NewsletterSection></NewsletterSection>
     </div>
   )
 }
