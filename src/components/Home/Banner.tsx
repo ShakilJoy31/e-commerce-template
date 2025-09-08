@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import backgroundImage from "@/assets/Home/home-banner.jpg";
+import backgroundImage from "../../../public/home-banner.jpg";
 
 const textVariants: Variants = {
     hidden: { opacity: 0, y: 40 },

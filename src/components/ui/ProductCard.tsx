@@ -6,6 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { CardBody, CardContainer, CardItem } from "./3d-card";
 import { ProductCardProps } from "@/types/product/productCard";
 import { useCart } from "@/hooks/CartContext";
+import { useWishlist } from "@/hooks/WishlistContext";
 
 
 
@@ -19,6 +20,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onQuickView,
 }) => {
   const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const isWishlisted = isInWishlist(product.id);
+
+  console.log("isWishlisted:", isWishlisted);
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -34,8 +40,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const handleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    // Add wishlist logic here
-    console.log("Added to wishlist:", product);
+    if (isWishlisted) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+    
   };
 
   // Calculate discount percentage if original price exists

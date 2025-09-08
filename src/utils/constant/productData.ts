@@ -1,4 +1,4 @@
-import productImage from "@/assets/Products/Product1.jpg";
+import productImage from "../../../public/Product1.jpg";
 import { Product } from "@/types/product/productCard";
 
 export const sampleProducts: Product[] = [

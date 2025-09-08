@@ -6,6 +6,7 @@ import { appConfiguration } from "@/utils/constant/appConfiguration";
 import Providers from "../hooks/Providers";
 import { Toaster } from "react-hot-toast";
 import { CartProvider } from "@/hooks/CartContext";
+import { WishlistProvider } from "@/hooks/WishlistContext";
 
 
 const geistSans = Geist({
@@ -37,11 +38,16 @@ export default function RootLayout({
           {" "}
           <ThemeProvider
             defaultTheme="light"
-            storageKey={`${appConfiguration.appCode}theme`}
-          >
-            <LocaleProvider><CartProvider>{children}</CartProvider></LocaleProvider>
+            storageKey={`${appConfiguration.appCode}theme`}>
+            <LocaleProvider>
+              <CartProvider>
+                <WishlistProvider>
+                  {children}
+                </WishlistProvider>
+              </CartProvider>
+            </LocaleProvider>
           </ThemeProvider>
-          <Toaster/>
+          <Toaster />
         </Providers>
       </body>
     </html>

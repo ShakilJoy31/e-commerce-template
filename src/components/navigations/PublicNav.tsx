@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import navbarLogo from "@/assets/Home/demo_logo.png";
+import navbarLogo from "../../../public/demo_logo.png";
 import ThemeSwitcher from "../reusable-components/ThemeSwitcher";
 import { Menu, X } from "lucide-react";
 import LanguageSwitcher from "../reusable-components/LanguageSwitcher";
@@ -13,10 +13,10 @@ import Button from "../reusable-components/Button";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Product", path: "/projects" },
-  { name: "About Us", path: "/affiliate" },
-  { name: "Login", path: "/login" },
-  { name: "Terms & Condition", path: "/technology" },
+  { name: "Products", path: "/projects" },
+  { name: "About Us", path: "/about-us" },
+  { name: "Login", path: "/authentication/login" },
+  { name: "Terms & Condition", path: "/terms-and-condition" },
 ];
 
 export default function PublicNav() {
@@ -110,13 +110,37 @@ export default function PublicNav() {
     open: { opacity: 1, x: 0 }
   };
 
+  // Helper function to get desktop link classes
+  const getDesktopLinkClasses = (isActive: boolean) => {
+    const baseClasses = "relative px-4 py-2 font-medium transition-all duration-300";
+    
+    if (isActive) {
+      return `${baseClasses} ${(pathname === '/terms-and-condition' || pathname === '/contact' || pathname === '/cart' || pathname === '/wishlist') ? 'text-black dark:text-white' : `${isScrolled ? 'text-black dark:text-white' : 'text-white'}`}`;
+    }
+    
+    return `${baseClasses} ${isScrolled 
+      ? 'text-gray-700 dark:text-gray-300' 
+      : `dark:text-white ${(pathname === '/terms-and-condition' || pathname === '/contact' || pathname === '/cart' || pathname === '/wishlist') ? 'text-black' : 'text-white'}`}`;
+  };
+
+
+
+  // Helper function to get mobile link classes
+  const getMobileLinkClasses = (isActive: boolean) => {
+    const baseClasses = "block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300";
+    
+    return isActive
+      ? `${baseClasses} bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-300 border-l-4 border-blue-500 dark:border-blue-400 shadow-sm`
+      : `${baseClasses} text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400`;
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-white/90 dark:bg-[#050117]/90 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-800"
+        ? "bg-white/95 dark:bg-[#050117]/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-800"
         : "bg-transparent border-b border-transparent"
         } `}
     >
@@ -145,33 +169,33 @@ export default function PublicNav() {
           animate="visible"
           className="hidden lg:flex items-center space-x-1"
         >
-          {navLinks.map((link) => (
-            <motion.div
-              key={link.path}
-              variants={itemVariants}
-              className="relative"
-            >
-              <Link
-                href={link.path}
-                className={`relative px-4 py-2 font-medium transition-colors duration-300 ${isActiveLink(link.path)
-                  ? `${isScrolled ? 'text-black dark:text-white ' : 'text-white'} `
-                  : `${isScrolled ? 'text-gray-800 dark:text-gray-300 hover:text-gray-600' : 'text-white'} `
-                  }`}
+          {navLinks.map((link) => {
+            const isActive = isActiveLink(link.path);
+            return (
+              <motion.div
+                key={link.path}
+                variants={itemVariants}
+                className="relative"
               >
-                {link.name}
-                {isActiveLink(link.path) && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 ${isScrolled ? 'bg-black dark:bg-white' : 'bg-white'}`}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href={link.path}
+                  className={getDesktopLinkClasses(isActive)}
+                >
+                  {link.name}
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-indicator"
+                      className={`absolute bottom-0 left-0 right-0 h-0.5 ${isScrolled 
+                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500' 
+                        : 'bg-gradient-to-r from-blue-300 to-blue-400 dark:from-blue-300 dark:to-blue-400'}`}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </Link>
+              </motion.div>
+            );
+          })}
         </motion.nav>
-
-
 
         {/* Desktop Right Side */}
         <motion.div
@@ -223,44 +247,44 @@ export default function PublicNav() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 overflow-hidden "
+            className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 overflow-hidden"
           >
             <div className="px-4 py-4 flex flex-col space-y-3 h-screen">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.path}
-                  variants={mobileItemVariants}
-                  initial="closed"
-                  animate="open"
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={link.path}
-                    className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${isActiveLink(link.path)
-                      ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                      }`}
+              {navLinks.map((link, index) => {
+                const isActive = isActiveLink(link.path);
+                return (
+                  <motion.div
+                    key={link.path}
+                    variants={mobileItemVariants}
+                    initial="closed"
+                    animate="open"
+                    transition={{ delay: index * 0.1 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.path}
+                      className={getMobileLinkClasses(isActive)}
+                    >
+                      {link.name}
+                     
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <motion.div
                 variants={mobileItemVariants}
                 initial="closed"
                 animate="open"
                 transition={{ delay: navLinks.length * 0.1 }}
-                className=""
+                className="pt-2"
               >
                 <Link
                   href="/contact"
-                  className="block hover:cursor-pointer w-full px-4 py-3 rounded-lg text-black dark:text-white font-medium transition-all duration-300"
+                  className="block w-full px-4 py-3 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-medium text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg"
                 >
                   Contact Us
                 </Link>
               </motion.div>
-              <div className="flex xs:hidden items-center justify-between pt-4 ">
-
+              <div className="flex xs:hidden items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-800 mt-4">
                 <LanguageSwitcher />
                 <ThemeSwitcher />
               </div>
@@ -268,7 +292,6 @@ export default function PublicNav() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </motion.header>
   );
 }

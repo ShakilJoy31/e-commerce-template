@@ -2,7 +2,7 @@
 import { FaTelegramPlane, FaWhatsapp, FaInstagram, FaFacebookF, FaPhoneAlt } from "react-icons/fa";
 import { MdLocationOn, MdEmail, MdPayment } from "react-icons/md";
 import Image from "next/image";
-import siteLogo from "@/assets/Home/demo_logo.png";
+import siteLogo from "../../../public/demo_logo.png";
 import Paragraph from "../reusable-components/Paragraph";
 import Heading from "../reusable-components/Heading";
 import Link from "next/link";

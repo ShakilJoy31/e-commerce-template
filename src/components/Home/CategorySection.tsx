@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 
-import categoryProduct from "@/assets/Products/category-product.jpg";
-import categoryProduct2 from "@/assets/Products/4094.jpg";
+import categoryProduct from "../../../public/category-product.jpg";
+import categoryProduct2 from "../../../public/4094.jpg";
 import Button from "../reusable-components/Button";
 
 const categories = [
