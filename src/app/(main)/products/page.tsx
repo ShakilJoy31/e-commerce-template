@@ -1,11 +1,10 @@
 
-import ContactForm from "@/components/Contact/ContactForm";
-import LocationComponent from "@/components/Contact/LocationMap";
+import ProductListing from "@/components/Products/ProductListing";
 import { generateDynamicMetadata } from "@/metadata/generateMetadata";
 
 export async function generateMetadata() {
   return generateDynamicMetadata({
-    title: "Premium Online Store | Contact ",
+    title: "Premium Online Store | Projects ",
     description: "Discover amazing products at unbeatable prices. Shop the latest trends in electronics, fashion, home goods and more. Free shipping on orders over $50. Secure checkout guaranteed.",
     keywords: [
       "online shopping", "ecommerce store", "buy products online",
@@ -19,10 +18,10 @@ export async function generateMetadata() {
 const Home = () => {
   return (
     <div className="bg-[#F4F6F8] dark:bg-gray-600">
-      <ContactForm></ContactForm>
-      <LocationComponent></LocationComponent>
+      <ProductListing></ProductListing>
     </div>
   )
 }
 
 export default Home;
+ 

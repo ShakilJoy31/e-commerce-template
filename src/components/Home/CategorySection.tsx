@@ -80,7 +80,7 @@ export default function CategorySection() {
                 className={`relative flex-shrink-0 pb-1 font-semibold transition-colors text-sm md:text-base ${
                   activeCategory === cat.name
                     ? "text-orange-500"
-                    : "text-gray-700 hover:text-orange-400"
+                    : "text-gray-700 dark:text-gray-300 hover:text-orange-400"
                 }`}
               >
                 {cat.name}

@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import { FaTelegramPlane, FaWhatsapp, FaInstagram, FaFacebookF, FaPhoneAlt } from "react-icons/fa";
 import { MdLocationOn, MdEmail, MdPayment } from "react-icons/md";
 import Image from "next/image";
@@ -7,6 +6,7 @@ import Paragraph from "../reusable-components/Paragraph";
 import Heading from "../reusable-components/Heading";
 import Link from "next/link";
 import { footerSvg } from "@/utils/constant/footerWaveSvg";
+import Button from "../reusable-components/Button";
 
 export default function Footer() {
   return (
@@ -114,9 +114,9 @@ export default function Footer() {
               placeholder="Your email address" 
               className="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 hover:bg-blue-500 text-white py-2 rounded text-sm font-medium transition-colors">
+            <Button className="bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 hover:bg-blue-500 text-white py-2 rounded text-sm font-medium transition-colors">
               Subscribe
-            </button>
+            </Button>
           </div>
           
           <div className="mt-6">

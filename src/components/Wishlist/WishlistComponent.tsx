@@ -7,6 +7,8 @@ import productImage from "../../../public/Product1.jpg";
 import Button from "../reusable-components/Button";
 import { IoTrashBin, IoHeart } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
+import Heading from "../reusable-components/Heading";
+import Paragraph from "../reusable-components/Paragraph";
 
 
 // ---------- Confirmation Modal Component ----------
@@ -49,21 +51,21 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
               className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <Heading className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 {title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">{message}</p>
+              </Heading>
+              <Paragraph className="text-gray-600 dark:text-gray-300 mb-6">{message}</Paragraph>
               
               <div className="flex justify-end gap-3">
                 <Button
                   onClick={onClose}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="px-4 py-2 hover:cursor-pointer border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={onConfirm}
-                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                  className="px-4 py-2 hover:cursor-pointer bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                 >
                   Confirm
                 </Button>
@@ -203,7 +205,7 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
         {items.length > 0 && (
           <div className="mt-8 flex justify-start">
             <Button
-              className="border border-red-500 text-red-600 dark:text-red-400 px-6 py-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              className="border hover:cursor-pointer border-red-500 text-red-600 dark:text-red-400 px-6 py-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
               onClick={handleClearClick}
             >
               Clear Wishlist
@@ -235,12 +237,12 @@ export default function WishlistComponent() {
     <section className="relative w-full min-h-screen flex items-start justify-center py-12 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center my-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <Heading className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Your Wishlist
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          </Heading>
+          <Paragraph className="text-gray-600 dark:text-gray-400">
             {useWishlist().items.length} items saved for later
-          </p>
+          </Paragraph>
         </div>
         <WishlistTable onClear={clearWishlist} />
       </div>

@@ -7,6 +7,7 @@ import { CardBody, CardContainer, CardItem } from "./3d-card";
 import { ProductCardProps } from "@/types/product/productCard";
 import { useCart } from "@/hooks/CartContext";
 import { useWishlist } from "@/hooks/WishlistContext";
+import Button from "../reusable-components/Button";
 
 
 
@@ -149,32 +150,32 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* Actions */}
         {showActions && (
           <div className="flex justify-between items-center mt-6">
-            <CardItem
+            <Button
               translateZ="20"
               as="button"
               onClick={handleQuickView}
               className="px-4 py-2 hover:cursor-pointer rounded-xl text-xs font-normal dark:text-white text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
             >
               Quick View
-            </CardItem>
+            </Button>
 
-            <CardItem
+            <Button
               translateZ="20"
               as="button"
               onClick={handleWishlist}
               className="p-2 rounded-xl hover:cursor-pointer text-xs font-normal text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
             >
               <FaHeart size={18} />
-            </CardItem>
+            </Button>
 
-            <CardItem
+            <Button
               translateZ="20"
               as="button"
               onClick={handleAddToCart}
               className="px-4 py-2 rounded-xl hover:cursor-pointer bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
             >
               Add to Cart
-            </CardItem>
+            </Button>
           </div>
         )}
       </CardBody>

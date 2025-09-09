@@ -7,6 +7,8 @@ import productImage from "../../../public/Product1.jpg";
 import Button from "../reusable-components/Button";
 import { IoTrashBin } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
+import Heading from "../reusable-components/Heading";
+import Paragraph from "../reusable-components/Paragraph";
 
 // ---------- Confirmation Modal Component ----------
 interface ConfirmationModalProps {
@@ -48,21 +50,21 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
               className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <Heading className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 {title}
-              </h3>
+              </Heading>
               <p className="text-gray-600 dark:text-gray-300 mb-6">{message}</p>
               
               <div className="flex justify-end gap-3">
                 <Button
                   onClick={onClose}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="px-4 py-2 border hover:cursor-pointer border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={onConfirm}
-                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                  className="px-4 py-2 hover:cursor-pointer bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                 >
                   Confirm
                 </Button>
@@ -129,7 +131,7 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
 
   return (
     <>
-      <div className="w-full max-w-[1280px] mt-8 mx-auto px-4">
+      <div className="w-full max-w-7xl mt-8 mx-auto px-4">
         {/* Table */}
         <div className="overflow-x-auto border rounded-lg shadow-sm bg-white dark:bg-gray-800">
           <table className="w-full">
@@ -148,8 +150,8 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
                   <td colSpan={5} className="p-8 text-center text-gray-500 dark:text-gray-400">
                     <div className="flex flex-col items-center justify-center py-8">
                       <IoTrashBin size={48} className="text-gray-300 mb-4" />
-                      <p className="text-lg font-medium mb-2">Your cart is empty</p>
-                      <p className="text-gray-500">Start shopping to add items to your cart</p>
+                      <Paragraph className="text-lg font-medium mb-2">Your cart is empty</Paragraph>
+                      <Paragraph className="text-gray-500">Start shopping to add items to your cart</Paragraph>
                     </div>
                   </td>
                 </tr>
@@ -194,7 +196,7 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
                     </td>
                     <td className="p-4">
                       <Button
-                        className="text-red-500 hover:text-red-700 dark:hover:text-red-400 text-xl mx-auto flex items-center justify-center p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+                        className="text-red-500 hover:cursor-pointer hover:text-red-700 dark:hover:text-red-400 text-xl mx-auto flex items-center justify-center p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
                         onClick={() => handleRemoveClick(item.id)}
                         aria-label="Remove item"
                       >
@@ -212,14 +214,14 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
         {items.length > 0 && (
           <div className="mt-8 flex flex-col md:flex-row md:justify-between md:items-start gap-6">
             <Button
-              className="border border-red-500 text-red-600 dark:text-red-400 px-6 py-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors self-start md:self-auto"
+              className="border hover:cursor-pointer border-red-500 text-red-600 dark:text-red-400 px-6 py-3 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors self-start md:self-auto"
               onClick={handleClearClick}
             >
               Clear cart
             </Button>
 
             <div className="bg-white dark:bg-gray-800 border rounded-lg p-6 shadow-sm w-full md:max-w-md">
-              <h2 className="font-semibold text-xl mb-4 text-gray-900 dark:text-white">Cart Totals</h2>
+              <Heading className="font-semibold text-xl mb-4 text-gray-900 dark:text-white">Cart Totals</Heading>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-400">Subtotal</span>

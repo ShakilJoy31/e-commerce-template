@@ -3,6 +3,7 @@
 import React, { useState, KeyboardEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { tabs } from "@/utils/constant/policyData";
+import Button from "../reusable-components/Button";
 
 export default function PolicyTabs() {
     const [active, setActive] = useState<string>(tabs[0].id);
@@ -24,7 +25,7 @@ export default function PolicyTabs() {
                         {tabs.map((t) => {
                             const isActive = t.id === active;
                             return (
-                                <button
+                                <Button
                                     key={t.id}
                                     onClick={() => setActive(t.id)}
                                     onKeyDown={(e) => onKey(e, t.id)}
@@ -35,7 +36,7 @@ export default function PolicyTabs() {
                                     }`}
                                 >
                                     {t.title}
-                                </button>
+                                </Button>
                             );
                         })}
                     </div>
@@ -51,7 +52,7 @@ export default function PolicyTabs() {
                             const isActive = t.id === active;
                             return (
                                 <li key={t.id}>
-                                    <button
+                                    <Button
                                         onClick={() => setActive(t.id)}
                                         onKeyDown={(e) => onKey(e, t.id)}
                                         aria-current={isActive ? "true" : "false"}
@@ -74,7 +75,7 @@ export default function PolicyTabs() {
                                         >
                                             {t.title}
                                         </span>
-                                    </button>
+                                    </Button>
                                 </li>
                             );
                         })}
@@ -99,6 +100,7 @@ export default function PolicyTabs() {
                         )}
                     </AnimatePresence>
                 </main>
+                
             </div>
         </section>
     );

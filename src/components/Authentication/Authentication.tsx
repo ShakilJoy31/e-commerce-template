@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Button from "../reusable-components/Button";
+import Heading from "../reusable-components/Heading";
+import Paragraph from "../reusable-components/Paragraph";
 
 export default function AuthForm() {
     const [isLogin, setIsLogin] = useState(true);
@@ -18,20 +20,20 @@ export default function AuthForm() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-cyan-600 to-blue-700 px-4">
+        <section className="flex min-h-screen items-center justify-center bg-gradient-to-b from-cyan-600 to-blue-700 px-4">
             <div className="w-full max-w-md rounded-2xl bg-white dark:bg-black p-8 shadow-lg">
                 {/* Title */}
-                <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">
+                <Heading className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">
                     {isLogin ? "Login Form" : "Signup Form"}
-                </h2>
+                </Heading>
 
                 {/* Toggle Buttons */}
                 <div className="mb-6 flex rounded-lg border border-gray-200 bg-gray-100 p-1">
                     <Button
                         onClick={() => setIsLogin(true)}
                         className={`flex-1 rounded-md px-4 py-2 font-medium transition-colors ${isLogin
-                                ? "bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer text-white shadow"
-                                : "text-gray-700 hover:text-blue-500"
+                            ? "bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer text-white shadow"
+                            : "text-gray-700 hover:text-blue-500"
                             }`}
                     >
                         Login
@@ -40,8 +42,8 @@ export default function AuthForm() {
                     <Button
                         onClick={() => setIsLogin(false)}
                         className={`flex-1 rounded-md px-4 py-2 font-medium transition-colors ${!isLogin
-                                ? "bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer text-white shadow"
-                                : "text-gray-700 hover:text-blue-500"
+                            ? "bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer text-white shadow"
+                            : "text-gray-700 hover:text-blue-500"
                             }`}
                     >
                         Signup
@@ -111,23 +113,23 @@ export default function AuthForm() {
                                     </a>
                                 </div>
 
-                                <button
+                                <Button
                                     type="submit"
                                     className="w-full rounded-lg bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer px-4 py-2 font-semibold text-white shadow-md transition hover:from-blue-700 hover:to-blue-600"
                                 >
                                     Login
-                                </button>
+                                </Button>
 
-                                <p className="text-center text-sm text-gray-700 dark:text-gray-300 ">
+                                <Paragraph className="text-center text-sm text-gray-700 dark:text-gray-300 ">
                                     Not a member?{" "}
-                                    <button
+                                    <Button
                                         type="button"
                                         onClick={toggleMode}
                                         className="font-semibold text-blue-600 hover:underline"
                                     >
                                         Signup now
-                                    </button>
-                                </p>
+                                    </Button>
+                                </Paragraph>
                             </motion.div>
                         ) : (
                             <motion.div
@@ -201,7 +203,7 @@ export default function AuthForm() {
                                             placeholder="••••••••"
                                             className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
                                         />
-                                        <button
+                                        <Button
                                             type="button"
                                             onClick={() =>
                                                 setShowSignupPassword(!showSignupPassword)
@@ -209,32 +211,32 @@ export default function AuthForm() {
                                             className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
                                         >
                                             {showSignupPassword ? <FiEyeOff /> : <FiEye />}
-                                        </button>
+                                        </Button>
                                     </div>
                                 </div>
 
-                                <button
+                                <Button
                                     type="submit"
                                     className="w-full mt-4 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer px-4 py-2 font-semibold text-white shadow-md transition hover:from-blue-700 hover:to-blue-600"
                                 >
                                     Signup
-                                </button>
+                                </Button>
 
-                                <p className="text-center text-sm text-gray-600 dark:text-gray-300 ">
+                                <Paragraph className="text-center text-sm text-gray-600 dark:text-gray-300 ">
                                     Already a member?{" "}
-                                    <button
+                                    <Button
                                         type="button"
                                         onClick={toggleMode}
                                         className="font-semibold text-blue-600 hover:underline"
                                     >
                                         Login now
-                                    </button>
-                                </p>
+                                    </Button>
+                                </Paragraph>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </form>
             </div>
-        </div>
+        </section>
     );
 }

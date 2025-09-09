@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { motion } from "framer-motion";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -20,10 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseClasses = 'rounded font-medium transition-all focus:outline-none ';
-  
   const disabledClasses = 'opacity-50 cursor-not-allowed';
-
   // Default handler that does nothing when onClick is not provided
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!disabled && onClick) {
@@ -32,19 +30,23 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button
+    <motion.button
       type={type}
       onClick={handleClick}
+      whileHover={{
+        scale: 1.05,
+        boxShadow: "0px 6px 20px rgba(255,255,255,0.25)",
+      }}
+      whileTap={{ scale: 0.97 }}
       disabled={disabled}
       className={`
-        ${baseClasses}
         ${disabled ? disabledClasses : ''}
         ${className}
       `}
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };
 
