@@ -7,11 +7,12 @@ import Heading from "../reusable-components/Heading";
 import Link from "next/link";
 import { footerSvg } from "@/utils/constant/footerWaveSvg";
 import Button from "../reusable-components/Button";
+import InputField from "../ui/input";
 
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-[#0099FF] to-black text-gray-300 relative">
-     {footerSvg}
+      {footerSvg}
 
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 pt-10 pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -29,19 +30,19 @@ export default function Footer() {
           <Paragraph className="text-sm mb-4">
             Your one-stop destination for quality products at affordable prices. We offer the best shopping experience with fast delivery and excellent customer service.
           </Paragraph>
-          
+
           <div className="flex items-start gap-2 mb-3">
             <MdLocationOn className="text-blue-400 text-lg mt-0.5 flex-shrink-0" />
             <Paragraph className="text-sm">
               123 Commerce Street, Shopping District, City Center, 10001
             </Paragraph>
           </div>
-          
+
           <div className="flex items-center gap-2 mb-3">
             <FaPhoneAlt className="text-blue-400 text-lg flex-shrink-0" />
             <Paragraph className="text-sm">+1 (555) 123-4567</Paragraph>
           </div>
-          
+
           <div className="flex items-center gap-2 mb-6">
             <MdEmail className="text-blue-400 text-lg flex-shrink-0" />
             <Paragraph className="text-sm">support@eshop.com</Paragraph>
@@ -109,24 +110,26 @@ export default function Footer() {
             Subscribe to our newsletter for special offers and updates
           </Paragraph>
           <div className="flex flex-col gap-3">
-            <input 
-              type="email" 
-              placeholder="Your email address" 
-              className="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            <InputField
+              name="email"
+              type="email"
+              placeholder="Email"
+              icon={<MdEmail className="h-5 w-5 text-gray-400" />}
+              className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
             />
             <Button className="bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 hover:bg-blue-500 text-white py-2 rounded text-sm font-medium transition-colors">
               Subscribe
             </Button>
           </div>
-          
+
           <div className="mt-6">
             <Heading className="font-bold mb-3 text-white text-sm">Payment Methods</Heading>
             <div className="flex gap-2">
               <MdPayment className="text-2xl bg-white p-1 rounded" />
-              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">VISA</div>
-              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">MC</div>
-              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">AMEX</div>
-              <div className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">PP</div>
+              <Paragraph className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">VISA</Paragraph>
+              <Paragraph className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">MC</Paragraph>
+              <Paragraph className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">AMEX</Paragraph>
+              <Paragraph className="bg-white p-1 rounded text-xs font-bold px-2 text-gray-800 ">PP</Paragraph>
             </div>
           </div>
         </div>

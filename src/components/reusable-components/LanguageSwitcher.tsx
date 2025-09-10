@@ -1,6 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { MdEmail } from "react-icons/md";
 import { RxReset } from "react-icons/rx";
+import InputField from "../ui/input";
+import { Search } from "lucide-react";
+import Button from "./Button";
 
 // types ...
 declare global {
@@ -280,19 +284,21 @@ export default function LanguageSwitcher() {
         {isOpen && (
           <div className="absolute z-50 mt-1 w-48 bg-white border border-gray-600 rounded-lg shadow-lg max-h-60 overflow-hidden flex flex-col">
             <div className="p-2 border-b border-gray-700 bg-gray-200 ">
-              <input
+              <InputField
                 type="text"
                 placeholder="Search languages..."
                 className="w-full text-black dark:text-white bg-transparent outline-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                autoFocus
+                autoFocus={true}
               />
+
+
             </div>
             <div className="overflow-y-auto flex-1 scrollbar-hide">
               {filteredLangs.length > 0 ? (
                 filteredLangs.map((l) => (
-                  <button
+                  <Button
                     type="button"
                     key={l.code}
                     onClick={() => {
@@ -304,7 +310,7 @@ export default function LanguageSwitcher() {
                       }`}
                   >
                     {l.label}
-                  </button>
+                  </Button>
                 ))
               ) : (
                 <div className="px-4 py-2 text-gray-400">No languages found</div>

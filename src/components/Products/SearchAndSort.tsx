@@ -1,4 +1,5 @@
 import { Search } from "lucide-react";
+import InputField from "../ui/input";
 
 interface SearchAndSortProps {
     searchTerm: string;
@@ -17,15 +18,13 @@ export default function SearchAndSort({
         <div className="flex flex-wrap items-center justify-between mb-6">
             {/* Search input */}
             <div className="relative w-full sm:w-72">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <Search className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
+                <InputField
                     type="text"
                     placeholder="Search Product..."
                     value={searchTerm}
+                    icon={<Search className="h-5 w-5 text-gray-400" />}
+                    className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="border border-cyan-500 rounded pl-10 pr-3 py-2 w-full focus:outline-none"
                 />
             </div>
 

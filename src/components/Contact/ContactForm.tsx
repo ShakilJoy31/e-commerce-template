@@ -1,14 +1,16 @@
 // components/ContactForm.tsx
 "use client";
 
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Search } from "lucide-react";
 import Heading from "../reusable-components/Heading";
 import Button from "../reusable-components/Button";
 import Paragraph from "../reusable-components/Paragraph";
 import React, { useState } from "react";
-
+import { FaUserAlt } from "react-icons/fa";
 import { TextareaField } from "../reusable-components/CustomTextArea";
 import InputField from "../ui/input";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 
 export default function ContactForm() {
@@ -35,14 +37,20 @@ export default function ContactForm() {
             <InputField
               label="Name"
               name="name"
+              type="text"
               placeholder="Name"
+              icon={<FaUserAlt className="h-5 w-5 text-gray-400" />}
+              className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
               value={formData.name}
               onChange={handleChange}
             />
             <InputField
               label="Phone"
               name="phone"
+              type="number"
               placeholder="Phone"
+              icon={<FaPhoneAlt className="h-5 w-5 text-gray-400" />}
+              className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
               value={formData.phone}
               onChange={handleChange}
             />
@@ -52,7 +60,9 @@ export default function ContactForm() {
             label="Email"
             name="email"
             type="email"
-            placeholder="Email"
+            placeholder="you@example.com"
+            icon={<MdEmail className="h-5 w-5 text-gray-400" />}
+            className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
             value={formData.email}
             onChange={handleChange}
           />
@@ -61,11 +71,13 @@ export default function ContactForm() {
             label="Messages"
             name="message"
             placeholder="Messages"
+            icon={<FaUserAlt className="h-5 w-5 text-gray-400" />}
+            className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
             value={formData.message}
             onChange={handleChange}
           />
 
-          <Button className="px-6 py-3 bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 text-white font-medium rounded-md hover:bg-green-800 transition">
+          <Button className="px-6 py-2 bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 text-white font-medium rounded-md hover:bg-green-800 transition">
             Submit Now
           </Button>
         </div>

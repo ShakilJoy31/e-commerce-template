@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Heading from "../reusable-components/Heading";
 import Paragraph from "../reusable-components/Paragraph";
 import Button from "../reusable-components/Button";
+import { MdEmail } from "react-icons/md";
+import InputField from "../ui/input";
 
 export default function NewsletterContent() {
     return (
@@ -27,19 +29,17 @@ export default function NewsletterContent() {
 
             {/* Right side - Form */}
             <form className="flex flex-col space-y-4">
-                <label htmlFor="email" className="text-sm font-semibold tracking-wide">
-                    Enter your email *
-                </label>
-                <input
-                    id="email"
+                <InputField
+                    label="Enter your email"
+                    name="email"
                     type="email"
-                    placeholder="example@email.com"
-                    required
-                    className="bg-transparent border-b border-gray-400 focus:border-white transition w-full outline-none py-2 text-sm"
+                    placeholder="Email"
+                    icon={<MdEmail className="h-5 w-5 text-gray-400" />}
+                    className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                 />
 
                 <div className="flex items-center space-x-2">
-                    <input type="checkbox" id="subscribe" className="accent-purple-500" />
+                    <input type="checkbox" id="subscribe" className="accent-cyan-500 w-5 h-5" />
                     <label htmlFor="subscribe" className="text-sm">
                         Yes, subscribe me to your newsletter.
                     </label>

@@ -4,13 +4,15 @@ interface InputFieldProps {
   label?: string;
   type?: string;
   placeholder?: string;
-  value: string | number;
+  value?: string | number;
   name?: string;
   min?: string;
   step?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: React.ReactNode;
   errorMessage?: string;
+  className?: string;
+  autoFocus?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -21,15 +23,16 @@ const InputField: React.FC<InputFieldProps> = ({
   name,
   onChange,
   icon,
-  errorMessage,
+  className,
   min,
   step,
+  autoFocus,
 }) => {
   return (
     <div className="flex flex-col w-full">
       {/* Label */}
       {label && (
-        <label className="mb-1 text-sm font-medium text-gray-700 dark:bg-black dark:text-white">
+        <label className="mb-1 text-sm font-medium text-white dark:text-gray-700 ">
           {label}
         </label>
       )}
@@ -52,11 +55,8 @@ const InputField: React.FC<InputFieldProps> = ({
           onChange={onChange}
           min={min}
           step={step}
-          className={`w-full bg-white px-4 py-1.5 border dark:bg-black dark:text-white ${
-            errorMessage ? "border-red-500" : "border-gray-300"
-          } rounded-md text-gray-700 focus:outline-none focus:ring-2 ${
-            errorMessage ? "focus:ring-red-500" : "focus:ring-blue-500"
-          } ${icon ? "pl-10" : ""}`}
+          className={className}
+          autoFocus={autoFocus}
         />
       </div>
 

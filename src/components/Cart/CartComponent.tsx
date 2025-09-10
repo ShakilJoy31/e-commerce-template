@@ -9,6 +9,7 @@ import { IoTrashBin } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import Heading from "../reusable-components/Heading";
 import Paragraph from "../reusable-components/Paragraph";
+import Table from "../ui/table";
 
 // ---------- Confirmation Modal Component ----------
 interface ConfirmationModalProps {
@@ -87,6 +88,7 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
   const { items, totalPrice, increment, decrement, removeFromCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemToRemove, setItemToRemove] = useState<string | number | null>(null);
+  const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
   const handleClearClick = () => {
     setIsModalOpen(true);
@@ -110,6 +112,22 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
     setIsModalOpen(false);
   };
 
+  const handleRowSelect = (item: any) => {
+    if (selectedItems.some(selected => selected.id === item.id)) {
+      setSelectedItems(selectedItems.filter(selected => selected.id !== item.id));
+    } else {
+      setSelectedItems([...selectedItems, item]);
+    }
+  };
+
+  const handleSelectAll = () => {
+    if (selectedItems.length === items.length) {
+      setSelectedItems([]);
+    } else {
+      setSelectedItems([...items]);
+    }
+  };
+
   const getModalConfig = () => {
     if (itemToRemove) {
       const item = items.find(i => i.id === itemToRemove);
@@ -129,86 +147,84 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
 
   const modalConfig = getModalConfig();
 
+  // Define table headers
+  const headers = ["Product", "Price", "Quantity", "Total", "Action"];
+
+  // Render function for table rows
+  const renderRow = (item: any, index: number) => (
+    <>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="flex items-center gap-4">
+          <div className="relative w-16 h-16 flex-shrink-0">
+            <Image
+              src={item.image || productImage.src}
+              alt={item.name}
+              fill
+              className="object-cover rounded-md"
+            />
+          </div>
+          <span className="font-medium text-gray-900 dark:text-white">{item.name}</span>
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white">
+        ${item.price.toFixed(2)}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="flex items-center border rounded-md w-28 justify-between bg-white dark:bg-gray-700">
+          <Button
+            className="px-3 py-1 text-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+            onClick={() => decrement(item.id)}
+            aria-label="Decrease quantity"
+          >
+            –
+          </Button>
+          <span className="px-2 font-medium text-gray-900 dark:text-white">{item.quantity}</span>
+          <Button
+            className="px-3 py-1 text-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+            onClick={() => increment(item.id)}
+            aria-label="Increase quantity"
+          >
+            +
+          </Button>
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">
+        ${(item.price * item.quantity).toFixed(2)}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <Button
+          className="text-red-500 hover:cursor-pointer hover:text-red-700 dark:hover:text-red-400 text-xl mx-auto flex items-center justify-center p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+          onClick={() => handleRemoveClick(item.id)}
+          aria-label="Remove item"
+        >
+          <IoTrashBin size={20} />
+        </Button>
+      </td>
+    </>
+  );
+
   return (
     <>
       <div className="w-full max-w-7xl mt-8 mx-auto px-4">
-        {/* Table */}
-        <div className="overflow-x-auto border rounded-lg shadow-sm bg-white dark:bg-gray-800">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b bg-gray-100 dark:bg-gray-700 text-left">
-                <th className="p-4 font-medium text-gray-700 dark:text-gray-300">Product</th>
-                <th className="p-4 font-medium text-gray-700 dark:text-gray-300">Price</th>
-                <th className="p-4 font-medium text-gray-700 dark:text-gray-300">Quantity</th>
-                <th className="p-4 font-medium text-gray-700 dark:text-gray-300">Total</th>
-                <th className="p-4 font-medium text-gray-700 dark:text-gray-300 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.length === 0 ? (
-                <tr>
-                  <td colSpan={5} className="p-8 text-center text-gray-500 dark:text-gray-400">
-                    <div className="flex flex-col items-center justify-center py-8">
-                      <IoTrashBin size={48} className="text-gray-300 mb-4" />
-                      <Paragraph className="text-lg font-medium mb-2">Your cart is empty</Paragraph>
-                      <Paragraph className="text-gray-500">Start shopping to add items to your cart</Paragraph>
-                    </div>
-                  </td>
-                </tr>
-              ) : (
-                items.map((item) => (
-                  <tr key={item.id} className="border-b hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                    <td className="p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="relative w-16 h-16 flex-shrink-0">
-                          <Image
-                            src={item.image || productImage.src}
-                            alt={item.name}
-                            fill
-                            className="object-cover rounded-md"
-                          />
-                        </div>
-                        <span className="font-medium text-gray-900 dark:text-white">{item.name}</span>
-                      </div>
-                    </td>
-                    <td className="p-4 text-gray-900 dark:text-white">${item.price.toFixed(2)}</td>
-                    <td className="p-4">
-                      <div className="flex items-center border rounded-md w-28 justify-between bg-white dark:bg-gray-700">
-                        <Button
-                          className="px-3 py-1 text-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-                          onClick={() => decrement(item.id)}
-                          aria-label="Decrease quantity"
-                        >
-                          –
-                        </Button>
-                        <span className="px-2 font-medium text-gray-900 dark:text-white">{item.quantity}</span>
-                        <Button
-                          className="px-3 py-1 text-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-                          onClick={() => increment(item.id)}
-                          aria-label="Increase quantity"
-                        >
-                          +
-                        </Button>
-                      </div>
-                    </td>
-                    <td className="p-4 font-medium text-gray-900 dark:text-white">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </td>
-                    <td className="p-4">
-                      <Button
-                        className="text-red-500 hover:cursor-pointer hover:text-red-700 dark:hover:text-red-400 text-xl mx-auto flex items-center justify-center p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
-                        onClick={() => handleRemoveClick(item.id)}
-                        aria-label="Remove item"
-                      >
-                        <IoTrashBin size={20} />
-                      </Button>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+        {/* Use the reusable Table component */}
+        {items.length === 0 ? (
+          <div className="overflow-x-auto border rounded-lg shadow-sm bg-white dark:bg-gray-800 p-8 text-center">
+            <div className="flex flex-col items-center justify-center py-8">
+              <IoTrashBin size={48} className="text-gray-300 mb-4" />
+              <Paragraph className="text-lg font-medium mb-2">Your cart is empty</Paragraph>
+              <Paragraph className="text-gray-500">Start shopping to add items to your cart</Paragraph>
+            </div>
+          </div>
+        ) : (
+          <Table
+            headers={headers}
+            data={items}
+            renderRow={renderRow}
+            selectedRows={selectedItems}
+            onRowSelect={handleRowSelect}
+            onSelectAll={handleSelectAll}
+          />
+        )}
 
         {/* Cart Totals */}
         {items.length > 0 && (
@@ -272,7 +288,6 @@ export default function CartComponent() {
 
   const handleCheckout = () => {
     // add your checkout logic here
-    
   };
 
   return (

@@ -6,6 +6,9 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Button from "../reusable-components/Button";
 import Heading from "../reusable-components/Heading";
 import Paragraph from "../reusable-components/Paragraph";
+import { MdEmail } from "react-icons/md";
+import InputField from "../ui/input";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 export default function AuthForm() {
     const [isLogin, setIsLogin] = useState(true);
@@ -31,8 +34,8 @@ export default function AuthForm() {
                 <div className="mb-6 flex rounded-lg border border-gray-200 bg-gray-100 p-1">
                     <Button
                         onClick={() => setIsLogin(true)}
-                        className={`flex-1 rounded-md px-4 py-2 font-medium transition-colors ${isLogin
-                            ? "bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer text-white shadow"
+                        className={`flex-1 rounded-md px-4 py-2 font-medium hover:cursor-pointer transition-colors ${isLogin
+                            ? "bg-gradient-to-r from-cyan-600 to-blue-700 text-white"
                             : "text-gray-700 hover:text-blue-500"
                             }`}
                     >
@@ -41,8 +44,8 @@ export default function AuthForm() {
 
                     <Button
                         onClick={() => setIsLogin(false)}
-                        className={`flex-1 rounded-md px-4 py-2 font-medium transition-colors ${!isLogin
-                            ? "bg-gradient-to-r from-cyan-600 to-blue-700 hover:cursor-pointer text-white shadow"
+                        className={`flex-1 rounded-md px-4 py-2 font-medium hover:cursor-pointer transition-colors ${!isLogin
+                            ? "bg-gradient-to-r from-cyan-600 to-blue-700 text-white"
                             : "text-gray-700 hover:text-blue-500"
                             }`}
                     >
@@ -64,39 +67,36 @@ export default function AuthForm() {
                             >
                                 {/* Email */}
                                 <div className="space-y-2">
-                                    <label
-                                        htmlFor="email"
-                                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 "
-                                    >
-                                        Email Address
-                                    </label>
-                                    <input
-                                        id="email"
+                                    <InputField
+                                        label="Email Address"
+                                        name="email"
                                         type="email"
+                                        onChange={() => { }}
                                         placeholder="you@example.com"
-                                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
+                                        icon={<MdEmail className="h-5 w-5 text-gray-400" />}
+                                        className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                                     />
                                 </div>
 
                                 {/* Password with toggle */}
                                 <div className="space-y-2">
-                                    <label
-                                        htmlFor="password"
-                                        className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                                    >
-                                        Password
-                                    </label>
+
+
+
                                     <div className="relative">
-                                        <input
-                                            id="password"
+                                        <InputField
+                                            label="Password"
+                                            name="password"
                                             type={showPassword ? "text" : "password"}
+                                            onChange={() => { }}
                                             placeholder="••••••••"
-                                            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
+                                            icon={<RiLockPasswordFill className="h-5 w-5 text-gray-400" />}
+                                            className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                                         />
                                         <Button
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
+                                            className="absolute inset-y-0 right-3 top-6.5 flex items-center text-gray-500 hover:text-gray-700"
                                         >
                                             {showPassword ? <FiEyeOff /> : <FiEye />}
                                         </Button>
@@ -143,74 +143,57 @@ export default function AuthForm() {
                                 {/* First + Last Name */}
                                 <div className="flex gap-4">
                                     <div className="flex-1 space-y-2">
-                                        <label
-                                            htmlFor="firstname"
-                                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 "
-                                        >
-                                            First Name
-                                        </label>
-                                        <input
-                                            id="firstname"
+                                        <InputField
+                                            label="First Name"
+                                            name="firstname"
                                             type="text"
                                             placeholder="John"
-                                            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
+                                            className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                                         />
+
                                     </div>
                                     <div className="flex-1 space-y-2">
-                                        <label
-                                            htmlFor="lastname"
-                                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 "
-                                        >
-                                            Last Name
-                                        </label>
-                                        <input
-                                            id="lastname"
+                                        <InputField
+                                            label="Last Name"
+                                            name="lastname"
                                             type="text"
                                             placeholder="Doe"
-                                            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
+                                            className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                                         />
                                     </div>
                                 </div>
 
                                 {/* Email */}
                                 <div className="space-y-2">
-                                    <label
-                                        htmlFor="signup-email"
-                                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 "
-                                    >
-                                        Email Address
-                                    </label>
-                                    <input
-                                        id="signup-email"
+                                    <InputField
+                                        label="Email Address"
+                                        name="signup-email"
                                         type="email"
+                                        onChange={() => { }}
                                         placeholder="you@example.com"
-                                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
+                                        icon={<MdEmail className="h-5 w-5 text-gray-400" />}
+                                        className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                                     />
                                 </div>
 
                                 {/* Password with toggle */}
                                 <div className="space-y-2">
-                                    <label
-                                        htmlFor="signup-password"
-                                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 "
-                                    >
-                                        Password
-                                    </label>
                                     <div className="relative">
-                                        <input
-                                            id="signup-password"
-                                            type={showSignupPassword ? "text" : "password"}
+                                        <InputField
+                                            label="Password"
+                                            name="password"
+                                            type={showPassword ? "text" : "password"}
+                                            onChange={() => { }}
                                             placeholder="••••••••"
-                                            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none"
+                                            icon={<RiLockPasswordFill className="h-5 w-5 text-gray-400" />}
+                                            className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                                         />
                                         <Button
                                             type="button"
-                                            onClick={() =>
-                                                setShowSignupPassword(!showSignupPassword)
-                                            }
-                                            className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute inset-y-0 right-3 top-6.5 flex items-center text-gray-500 hover:text-gray-700"
                                         >
-                                            {showSignupPassword ? <FiEyeOff /> : <FiEye />}
+                                            {showPassword ? <FiEyeOff /> : <FiEye />}
                                         </Button>
                                     </div>
                                 </div>
