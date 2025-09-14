@@ -6,77 +6,12 @@ import React, { useState } from "react";
 import productImage from "../../../public/Product1.jpg";
 import Button from "../reusable-components/Button";
 import { IoTrashBin } from "react-icons/io5";
-import { motion, AnimatePresence } from "framer-motion";
 import Heading from "../reusable-components/Heading";
 import Paragraph from "../reusable-components/Paragraph";
 import Table from "../ui/table";
-
-// ---------- Confirmation Modal Component ----------
-interface ConfirmationModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  title: string;
-  message: string;
-}
-
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  title,
-  message,
-}) => {
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop with blur effect */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
-            onClick={onClose}
-          />
-          
-          {/* Modal */}
-          <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Heading className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {title}
-              </Heading>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">{message}</p>
-              
-              <div className="flex justify-end gap-3">
-                <Button
-                  onClick={onClose}
-                  className="px-4 py-2 border hover:cursor-pointer border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={onConfirm}
-                  className="px-4 py-2 hover:cursor-pointer bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-                >
-                  Confirm
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
+import { useRouter } from "next/navigation";
+import { CartItem } from "@/types/product/productCard";
+import { ConfirmationModal } from "../reusable-components/ConfirmationModal";
 
 // ---------- Reusable Cart Table ----------
 interface CartTableProps {
@@ -87,8 +22,8 @@ interface CartTableProps {
 const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
   const { items, totalPrice, increment, decrement, removeFromCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [itemToRemove, setItemToRemove] = useState<string | number | null>(null);
-  const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const [itemToRemove, setItemToRemove] = useState<string | null>(null);
+  const [selectedItems, setSelectedItems] = useState<CartItem[]>([]);
 
   const handleClearClick = () => {
     setIsModalOpen(true);
@@ -99,7 +34,7 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
     setIsModalOpen(false);
   };
 
-  const handleRemoveClick = (id: string | number) => {
+  const handleRemoveClick = (id: string) => {
     setItemToRemove(id);
     setIsModalOpen(true);
   };
@@ -112,7 +47,7 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
     setIsModalOpen(false);
   };
 
-  const handleRowSelect = (item: any) => {
+  const handleRowSelect = (item: CartItem) => {
     if (selectedItems.some(selected => selected.id === item.id)) {
       setSelectedItems(selectedItems.filter(selected => selected.id !== item.id));
     } else {
@@ -124,7 +59,9 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
     if (selectedItems.length === items.length) {
       setSelectedItems([]);
     } else {
-      setSelectedItems([...items]);
+      setSelectedItems(
+        items.filter((item): item is CartItem => typeof item.id === "string")
+      );
     }
   };
 
@@ -151,7 +88,7 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
   const headers = ["Product", "Price", "Quantity", "Total", "Action"];
 
   // Render function for table rows
-  const renderRow = (item: any, index: number) => (
+  const renderRow = (item: CartItem) => (
     <>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="flex items-center gap-4">
@@ -285,9 +222,10 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
 // ---------- Cart Page Component ----------
 export default function CartComponent() {
   const { clearCart } = useCart();
+  const router = useRouter();
 
   const handleCheckout = () => {
-    // add your checkout logic here
+    router.push('/checkout');
   };
 
   return (

@@ -13,7 +13,6 @@ import { RiLockPasswordFill } from "react-icons/ri";
 export default function AuthForm() {
     const [isLogin, setIsLogin] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
-    const [showSignupPassword, setShowSignupPassword] = useState(false);
 
     const toggleMode = () => setIsLogin((prev) => !prev);
 

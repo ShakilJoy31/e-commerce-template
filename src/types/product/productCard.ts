@@ -36,3 +36,36 @@ export interface ProductCardProps {
   onAddToCart?: (product: Product) => void;
   onQuickView?: (product: Product) => void;
 }
+
+
+
+
+
+// Product for card component and wishlist component..........................................
+
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+}
+
+export interface WishlistItem {
+  id: string;
+  name: string;
+  price: number;
+  image?: string;
+}
+
+
+
+
+// Interface for confirmation modal......................................
+export interface IConfirmationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title: string;
+  message: string;
+}

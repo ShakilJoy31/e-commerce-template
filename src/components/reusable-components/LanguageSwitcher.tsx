@@ -1,9 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { MdEmail } from "react-icons/md";
 import { RxReset } from "react-icons/rx";
 import InputField from "../ui/input";
-import { Search } from "lucide-react";
 import Button from "./Button";
 
 // types ...

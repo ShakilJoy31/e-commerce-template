@@ -6,77 +6,22 @@ import React, { useState } from "react";
 import productImage from "../../../public/Product1.jpg";
 import Button from "../reusable-components/Button";
 import { IoTrashBin, IoHeart } from "react-icons/io5";
-import { motion, AnimatePresence } from "framer-motion";
+
 import Heading from "../reusable-components/Heading";
 import Paragraph from "../reusable-components/Paragraph";
 import Table from "../ui/table";
+import { useCart } from "@/hooks/CartContext";
+import { ConfirmationModal } from "../reusable-components/ConfirmationModal";
 
-// ---------- Confirmation Modal Component ----------
-interface ConfirmationModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  title: string;
-  message: string;
+// ---------- Product Interface ----------
+interface Product {
+  id: string | number;
+  name: string;
+  price: number;
+  image?: string;
 }
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  title,
-  message,
-}) => {
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop with blur effect */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
-            onClick={onClose}
-          />
-          
-          {/* Modal */}
-          <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Heading className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {title}
-              </Heading>
-              <Paragraph className="text-gray-600 dark:text-gray-300 mb-6">{message}</Paragraph>
-              
-              <div className="flex justify-end gap-3">
-                <Button
-                  onClick={onClose}
-                  className="px-4 py-2 hover:cursor-pointer border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={onConfirm}
-                  className="px-4 py-2 hover:cursor-pointer bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-                >
-                  Confirm
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
+
 
 // ---------- Reusable Wishlist Table ----------
 interface WishlistTableProps {
@@ -88,7 +33,8 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
   // const { addToCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemToRemove, setItemToRemove] = useState<string | number | null>(null);
-  const [selectedItems, setSelectedItems] = useState<any[]>([]);
+  const [selectedItems, setSelectedItems] = useState<Product[]>([]);
+  const { addToCart } = useCart();
 
   const handleClearClick = () => {
     setIsModalOpen(true);
@@ -112,7 +58,7 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
     setIsModalOpen(false);
   };
 
-  const handleRowSelect = (item: any) => {
+  const handleRowSelect = (item: Product) => {
     if (selectedItems.some(selected => selected.id === item.id)) {
       setSelectedItems(selectedItems.filter(selected => selected.id !== item.id));
     } else {
@@ -128,10 +74,10 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
     }
   };
 
-  // const handleAddToCart = (item: Product) => {
-  //   addToCart(item);
-  //   // Optional: Show success message or toast
-  // };
+  const handleAddToCart = (item: Product) => {
+    addToCart(item);
+    // Optional: Show success message or toast
+  };
 
   const getModalConfig = () => {
     if (itemToRemove) {
@@ -156,7 +102,7 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
   const headers = ["Product", "Price", "Action", "Remove"];
 
   // Render function for table rows
-  const renderRow = (item: any, index: number) => (
+  const renderRow = (item: Product) => (
     <>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="flex items-center gap-4">
@@ -176,7 +122,7 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <Button
-          // onClick={() => handleAddToCart(item)}
+          onClick={() => handleAddToCart(item)}
           className="bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 text-white px-4 py-2 rounded-md hover:from-cyan-500 hover:to-blue-600 transition-colors"
         >
           Add to Cart
@@ -207,7 +153,7 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
             </div>
           </div>
         ) : (
-          <Table
+          <Table<Product>
             headers={headers}
             data={items}
             renderRow={renderRow}

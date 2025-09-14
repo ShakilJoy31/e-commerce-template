@@ -3,6 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaRegHeart } from "react-icons/fa";
 import { CardBody, CardContainer, CardItem } from "./3d-card";
 import { ProductCardProps } from "@/types/product/productCard";
 import { useCart } from "@/hooks/CartContext";
@@ -24,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const isWishlisted = isInWishlist(product.id);
 
-  console.log("isWishlisted:", isWishlisted);
+  console.log(isWishlisted)
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -46,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     } else {
       addToWishlist(product);
     }
-    
+
   };
 
   // Calculate discount percentage if original price exists
@@ -159,14 +161,39 @@ const ProductCard: React.FC<ProductCardProps> = ({
               Quick View
             </Button>
 
+
+
             <Button
               translateZ="20"
               as="button"
               onClick={handleWishlist}
               className="p-2 rounded-xl hover:cursor-pointer text-xs font-normal text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
             >
-              <FaHeart size={18} />
+              <AnimatePresence mode="wait" initial={false}>
+                {isWishlisted ? (
+                  <motion.div
+                    key="filled"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FaHeart size={25} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="outlined"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FaRegHeart size={25} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </Button>
+
 
             <Button
               translateZ="20"

@@ -1,7 +1,7 @@
 // components/ContactForm.tsx
 "use client";
 
-import { Phone, Mail, MapPin, Search } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import Heading from "../reusable-components/Heading";
 import Button from "../reusable-components/Button";
 import Paragraph from "../reusable-components/Paragraph";
