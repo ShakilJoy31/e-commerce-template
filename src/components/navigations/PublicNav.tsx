@@ -70,13 +70,23 @@ const isActiveLink = (pathname: string, linkPath: string): boolean => {
 const getDesktopLinkClasses = (isActive: boolean, isScrolled: boolean, pathname: string): string => {
   const baseClasses = "relative px-4 py-2 font-medium transition-all duration-300";
 
+  // helper to check paths
+  const specialPaths = [
+    "/terms-and-condition",
+    "/contact",
+    "/cart",
+    "/wishlist",
+    "/products",
+    "/checkout",
+  ];
+
+  // check if it's a special path or a product-details dynamic route
+  const isSpecialPath =
+    specialPaths.includes(pathname) || pathname.startsWith("/products/product-details/");
+
   if (isActive) {
     return `${baseClasses} ${
-      pathname === "/terms-and-condition" ||
-      pathname === "/contact" ||
-      pathname === "/cart" ||
-      pathname === "/wishlist" ||
-      pathname === "/products"
+      isSpecialPath
         ? "text-black dark:text-white"
         : isScrolled
         ? "text-black dark:text-white"
@@ -87,15 +97,7 @@ const getDesktopLinkClasses = (isActive: boolean, isScrolled: boolean, pathname:
   return `${baseClasses} ${
     isScrolled
       ? "text-gray-700 dark:text-gray-300"
-      : `dark:text-white ${
-          pathname === "/terms-and-condition" ||
-          pathname === "/contact" ||
-          pathname === "/cart" ||
-          pathname === "/wishlist" ||
-          pathname === "/products"
-            ? "text-black"
-            : "text-white"
-        }`
+      : `dark:text-white ${isSpecialPath ? "text-black" : "text-white"}`
   }`;
 };
 

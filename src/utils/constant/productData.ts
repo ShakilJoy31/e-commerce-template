@@ -6,7 +6,8 @@ export const sampleProducts: Product[] = [
     id: "1",
     slug: "premium-wireless-headphones",
     name: "Premium Wireless Headphones",
-    description: "Experience crystal-clear sound with our noise-cancelling wireless headphones.",
+    description:
+      "Experience crystal-clear sound with our premium wireless headphones, designed for both music lovers and professionals. Featuring advanced noise-cancelling technology, you can enjoy your favorite tracks, podcasts, or calls without distractions from the outside world. The lightweight design and cushioned ear cups ensure all-day comfort, while the long-lasting battery gives you up to 30 hours of uninterrupted playtime. With Bluetooth 5.0 connectivity, seamless pairing, and built-in controls, staying connected has never been easier. Whether you’re working, traveling, or relaxing, these headphones deliver exceptional sound quality and convenience.",
     price: 199.99,
     originalPrice: 249.99,
     imageUrl: productImage.src,

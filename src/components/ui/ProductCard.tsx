@@ -10,6 +10,7 @@ import { ProductCardProps } from "@/types/product/productCard";
 import { useCart } from "@/hooks/CartContext";
 import { useWishlist } from "@/hooks/WishlistContext";
 import Button from "../reusable-components/Button";
+import { useRouter } from "next/navigation";
 
 
 
@@ -22,11 +23,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   showActions = true,
   onQuickView,
 }) => {
+  const router = useRouter();
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const isWishlisted = isInWishlist(product.id);
-
-  console.log(isWishlisted)
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -48,7 +48,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
     } else {
       addToWishlist(product);
     }
-
   };
 
   // Calculate discount percentage if original price exists
@@ -85,7 +84,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Product Image */}
         <CardItem translateZ="100" className="w-full mt-8 relative">
-          <div className={`relative w-full ${imageHeight} overflow-hidden rounded-xl px-1 py-4 `}>
+          <div onClick={()=> router.push('/products/product-details/premium-wireless-headphones')} className={`relative hover:cursor-pointer w-full ${imageHeight} overflow-hidden rounded-xl px-1 py-4 `}>
             <Image
               src={product.imageUrl}
               alt={product.name}
@@ -199,7 +198,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               translateZ="20"
               as="button"
               onClick={handleAddToCart}
-              className="px-4 py-2 rounded-xl hover:cursor-pointer bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
+              className="px-4 py-2 rounded-xl hover:cursor-pointer bg-gradient-to-r from-cyan-600 to-blue-700 text-white text-xs font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
             >
               Add to Cart
             </Button>

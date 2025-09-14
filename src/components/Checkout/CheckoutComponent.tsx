@@ -18,40 +18,40 @@ export default function CheckoutForm() {
         <div className="space-y-3">
           <InputField
             label="Name *"
+            className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             placeholder="Shakil joy"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
 
           <InputField
             label="Address *"
+            className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             placeholder="Street address"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
 
           <InputField
             label="Town / City *"
+            className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             placeholder="Town / City"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
 
           <InputField
             label="Postcode / Zip *"
+            className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             placeholder="Postcode / Zip"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
 
           <InputField
             label="Email Address *"
+            className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             type="email"
             placeholder="shakil@gmail.com"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
 
           <InputField
             label="Phone *"
+            className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             type="tel"
             placeholder="01766556565"
-            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
           />
         </div>
       </div>
@@ -86,17 +86,17 @@ export default function CheckoutForm() {
 
         <h3 className="text-sm font-semibold mb-2">Payment With Card</h3>
         <div className="border border-gray-300 rounded-md px-4 py-3 mb-6">
-          <input
+          <InputField
+            label="Card Number *"
+            className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             type="text"
-            placeholder="Card number"
-            className="w-full outline-none"
+            placeholder="Card Number"
           />
         </div>
 
         <Button
           className="w-full bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 text-white py-2 rounded-md transition-colors font-medium"
-          onClick={onCheckout}
-        >
+          onClick={onCheckout}>
           Place Order
         </Button>
       </div>

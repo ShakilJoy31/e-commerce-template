@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { RxReset } from "react-icons/rx";
 import InputField from "../ui/input";
 import Button from "./Button";
+import { LANGS } from "@/utils/constant/languageConstant";
 
 // types ...
 declare global {
@@ -26,121 +27,7 @@ interface GoogleTranslateOptions {
   layout: unknown;
 }
 
-const LANGS = [
-  { code: "af", label: "Afrikaans" },
-  { code: "am", label: "Amharic" },
-  { code: "ar", label: "Arabic" },
-  { code: "as", label: "Assamese" },
-  { code: "az", label: "Azerbaijani" },
-  { code: "bg", label: "Bulgarian" },
-  { code: "bn", label: "Bengali" },
-  { code: "bo", label: "Tibetan" },
-  { code: "br", label: "Breton" },
-  { code: "ca", label: "Catalan" },
-  { code: "ceb", label: "Cebuano" },
-  { code: "cs", label: "Czech" },
-  { code: "cy", label: "Welsh" },
-  { code: "da", label: "Danish" },
-  { code: "de", label: "German" },
-  { code: "dz", label: "Dzongkha" },
-  { code: "el", label: "Greek" },
-  { code: "en", label: "English" },
-  { code: "es", label: "Spanish" },
-  { code: "et", label: "Estonian" },
-  { code: "eu", label: "Basque" },
-  { code: "fa", label: "Persian" },
-  { code: "ff", label: "Fulah" },
-  { code: "fi", label: "Finnish" },
-  { code: "fil", label: "Filipino" },
-  { code: "fj", label: "Fijian" },
-  { code: "fr", label: "French" },
-  { code: "fy", label: "Frisian" },
-  { code: "ga", label: "Irish" },
-  { code: "gd", label: "Scottish Gaelic" },
-  { code: "gl", label: "Galician" },
-  { code: "gu", label: "Gujarati" },
-  { code: "ha", label: "Hausa" },
-  { code: "haw", label: "Hawaiian" },
-  { code: "he", label: "Hebrew" },
-  { code: "hi", label: "Hindi" },
-  { code: "hr", label: "Croatian" },
-  { code: "hu", label: "Hungarian" },
-  { code: "hy", label: "Armenian" },
-  { code: "id", label: "Indonesian" },
-  { code: "ig", label: "Igbo" },
-  { code: "is", label: "Icelandic" },
-  { code: "it", label: "Italian" },
-  { code: "ja", label: "Japanese" },
-  { code: "jv", label: "Javanese" },
-  { code: "ka", label: "Georgian" },
-  { code: "kk", label: "Kazakh" },
-  { code: "km", label: "Khmer" },
-  { code: "kn", label: "Kannada" },
-  { code: "ko", label: "Korean" },
-  { code: "ku", label: "Kurdish" },
-  { code: "ky", label: "Kyrgyz" },
-  { code: "lb", label: "Luxembourgish" },
-  { code: "lo", label: "Lao" },
-  { code: "lt", label: "Lithuanian" },
-  { code: "lv", label: "Latvian" },
-  { code: "mg", label: "Malagasy" },
-  { code: "mi", label: "Māori" },
-  { code: "ml", label: "Malayalam" },
-  { code: "mn", label: "Mongolian" },
-  { code: "mr", label: "Marathi" },
-  { code: "ms", label: "Malay" },
-  { code: "mt", label: "Maltese" },
-  { code: "my", label: "Burmese" },
-  { code: "ne", label: "Nepali" },
-  { code: "nl", label: "Dutch" },
-  { code: "no", label: "Norwegian" },
-  { code: "ny", label: "Chichewa" },
-  { code: "om", label: "Oromo" },
-  { code: "or", label: "Odia" },
-  { code: "pa", label: "Punjabi" },
-  { code: "pl", label: "Polish" },
-  { code: "ps", label: "Pashto" },
-  { code: "pt", label: "Portuguese" },
-  { code: "ro", label: "Romanian" },
-  { code: "ru", label: "Russian" },
-  { code: "rw", label: "Kinyarwanda" },
-  { code: "sa", label: "Sanskrit" },
-  { code: "sd", label: "Sindhi" },
-  { code: "si", label: "Sinhala" },
-  { code: "sk", label: "Slovak" },
-  { code: "sl", label: "Slovenian" },
-  { code: "sm", label: "Samoan" },
-  { code: "sn", label: "Shona" },
-  { code: "so", label: "Somali" },
-  { code: "sq", label: "Albanian" },
-  { code: "sr", label: "Serbian" },
-  { code: "ss", label: "Swati" },
-  { code: "st", label: "Southern Sotho" },
-  { code: "su", label: "Sundanese" },
-  { code: "sv", label: "Swedish" },
-  { code: "sw", label: "Swahili" },
-  { code: "ta", label: "Tamil" },
-  { code: "te", label: "Telugu" },
-  { code: "tg", label: "Tajik" },
-  { code: "th", label: "Thai" },
-  { code: "ti", label: "Tigrinya" },
-  { code: "tk", label: "Turkmen" },
-  { code: "tl", label: "Tagalog" },
-  { code: "tn", label: "Tswana" },
-  { code: "to", label: "Tongan" },
-  { code: "tr", label: "Turkish" },
-  { code: "ts", label: "Tsonga" },
-  { code: "uk", label: "Ukrainian" },
-  { code: "ur", label: "Urdu" },
-  { code: "uz", label: "Uzbek" },
-  { code: "ve", label: "Venda" },
-  { code: "vi", label: "Vietnamese" },
-  { code: "xh", label: "Xhosa" },
-  { code: "yo", label: "Yoruba" },
-  { code: "zh-CN", label: "Chinese (Simplified)" },
-  { code: "zh-TW", label: "Chinese (Traditional)" },
-  { code: "zu", label: "Zulu" }
-];
+
 
 export default function LanguageSwitcher() {
   const initialized = useRef(false);
@@ -246,7 +133,7 @@ export default function LanguageSwitcher() {
         {/* WRAPPER so reset is a sibling, not nested */}
         <div className="flex items-center gap-1 bg-white dark:bg-black border border-gray-600 dark:border-gray-300 hover:border-blue-600 rounded-lg ">
 
-          <button
+          <Button
             type="button"
             onClick={() => setIsOpen((o) => !o)}
             className=" text-black dark:text-white py-1.5 pl-2 w-24 flex justify-between items-center hover:cursor-pointer"
@@ -265,33 +152,31 @@ export default function LanguageSwitcher() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
             onClick={() => translateTo("en")}
-            className="p-1 hover:bg-gray-700 border-l hover:border-blue-600 hover:cursor-pointer rounded-tr-lg rounded-br-lg text-black hover:text-white dark:text-white dark:hover:text-black"
+            className="p-1 hover:bg-gray-700 border-l hover:border-blue-600 hover:cursor-pointer rounded-tr-lg rounded-br-lg text-black hover:text-white dark:text-white "
             aria-label="Reset to English"
             title="Reset to English"
           >
             <span><RxReset size={30}></RxReset></span>
-          </button>
+          </Button>
 
         </div>
 
         {isOpen && (
-          <div className="absolute z-50 mt-1 w-48 bg-white border border-gray-600 rounded-lg shadow-lg max-h-60 overflow-hidden flex flex-col">
+          <div className="absolute z-50 mt-1 w-48 bg-white dark:bg-gray-700 border border-gray-600 rounded-lg shadow-lg max-h-72 overflow-hidden flex flex-col">
             <div className="p-2 border-b border-gray-700 bg-gray-200 ">
               <InputField
                 type="text"
                 placeholder="Search languages..."
-                className="w-full text-black dark:text-white bg-transparent outline-none"
+                className="w-full text-black bg-transparent outline-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 autoFocus={true}
               />
-
-
             </div>
             <div className="overflow-y-auto flex-1 scrollbar-hide">
               {filteredLangs.length > 0 ? (
@@ -304,7 +189,7 @@ export default function LanguageSwitcher() {
                       setIsOpen(false);
                       setSearchTerm("");
                     }}
-                    className={`w-full text-left px-2 py-1.5 hover:cursor-pointer hover:bg-gray-200 ${selectedLang === l.code ? "bg-[#1776BB]" : ""
+                    className={`w-full text-left px-2 py-1.5 hover:cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 ${selectedLang === l.code ? "bg-[#1776BB]" : ""
                       }`}
                   >
                     {l.label}

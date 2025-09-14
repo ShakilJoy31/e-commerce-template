@@ -32,7 +32,7 @@ const InputField: React.FC<InputFieldProps> = ({
     <div className="flex flex-col w-full">
       {/* Label */}
       {label && (
-        <label className="mb-1 text-sm font-medium text-white dark:text-gray-700 ">
+        <label className="mb-1 text-sm font-medium text-gray-700 dark:text-gray-300 ">
           {label}
         </label>
       )}

@@ -397,6 +397,11 @@ body {
   display: none !important;
 }
 
+/* Kill the white overlay frame */
+body > .skiptranslate {
+  display: none !important;
+}
+
 /* Reset body/html positioning caused by Google */
 html,
 body {
@@ -405,6 +410,8 @@ body {
   margin-top: 0px !important;
   padding-top: 0px !important;
 }
+
+
 
 /* Hide Google logo & gadget */
 .goog-logo-link,
@@ -490,4 +497,12 @@ body {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
