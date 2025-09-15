@@ -4,7 +4,7 @@ import { Product } from "@/types/product/productCardTypes";
 export async function getProductsData() {
   try {
     // In production
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/products.json`);
+    const response = await fetch(`${'https://e-commerce-template-olive-seven.vercel.app'}/products.json`);
     
     // For development only - if you want to use absolute path
     // const response = await fetch('http://localhost:3000/products.json');
