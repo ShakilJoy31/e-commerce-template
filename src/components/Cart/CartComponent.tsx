@@ -10,7 +10,7 @@ import Heading from "../reusable-components/Heading";
 import Paragraph from "../reusable-components/Paragraph";
 import Table from "../ui/table";
 import { useRouter } from "next/navigation";
-import { CartItem } from "@/types/product/productCard";
+import { CartItem } from "@/types/product/productCardTypes";
 import { ConfirmationModal } from "../reusable-components/ConfirmationModal";
 
 // ---------- Reusable Cart Table ----------

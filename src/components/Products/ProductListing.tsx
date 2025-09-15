@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
-import { sampleProducts } from "@/utils/constant/productData";
-
 import SidebarFilters from "./SidebarFilters";
 import FilterDrawer from "./FilterDrawer";
 import SearchAndSort from "./SearchAndSort";
 import ProductGrid from "./ProductGrid";
 import Button from "../reusable-components/Button";
 import Paragraph from "../reusable-components/Paragraph";
+import { Product } from "@/types/product/productCardTypes";
+interface NewProductsProps {
+  products: Product[];
+}
 
-export default function ProductListing() {
+export const ProductListing: React.FC<NewProductsProps> = ({ products }) => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>(["View All"]);
     const [selectedRating, setSelectedRating] = useState<number | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
@@ -20,7 +22,7 @@ export default function ProductListing() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
     // Filtering logic
-    const filteredProducts = sampleProducts.filter((p) => {
+    const filteredProducts = products.filter((p) => {
         const matchesCategory =
             selectedCategories.includes("View All") || selectedCategories.includes(p.category);
 

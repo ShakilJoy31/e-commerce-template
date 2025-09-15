@@ -1,7 +1,7 @@
 export interface CardItemProps {
   children: React.ReactNode;
   className?: string;
-  translateZ?: number | string;
+
   as?: React.ElementType;
   onClick?: (e: React.MouseEvent) => void;
   href?: string;
@@ -15,6 +15,7 @@ export interface Product {
   name: string;
   slug: string;
   description: string;
+  specification: string;
   price: number;
   originalPrice?: number;
   imageUrl: string;

@@ -1,4 +1,4 @@
-
+// app/page.tsx
 import HomeBanner from "@/components/Home/Banner";
 import CategorySection from "@/components/Home/CategorySection";
 import NewProduct from "@/components/Home/NewProduct";
@@ -7,6 +7,7 @@ import OfferProducts from "@/components/Home/OfferedProducts";
 import TopSoldProducts from "@/components/Home/TopSoldProduct";
 import WhyUs from "@/components/Home/WhyUs";
 import { generateDynamicMetadata } from "@/metadata/generateMetadata";
+import { getProductsData } from "@/utils/helper/dataFetcher";
 
 export async function generateMetadata() {
   return generateDynamicMetadata({
@@ -21,13 +22,16 @@ export async function generateMetadata() {
   });
 }
 
-const Home = () => {
+const Home = async () => {
+  // Fetch products data on the server
+  const products = await getProductsData();
+
   return (
     <div className="bg-[#F4F6F8] dark:bg-gray-600">
       <HomeBanner></HomeBanner>
-      <NewProduct></NewProduct>
-      <TopSoldProducts></TopSoldProducts>
-      <OfferProducts></OfferProducts>
+      <NewProduct products={products}></NewProduct>
+      <TopSoldProducts products={products} />
+      <OfferProducts products={products} />
       <CategorySection></CategorySection>
       <WhyUs></WhyUs>
       <NewsletterSection></NewsletterSection>

@@ -1,6 +1,6 @@
 "use client";
 
-import { CardItemProps } from "@/types/product/productCard";
+import { CardItemProps } from "@/types/product/productCardTypes";
 import React from "react";
 
 
@@ -8,16 +8,13 @@ import React from "react";
 export const CardItem: React.FC<CardItemProps> = ({
   children,
   className,
-  translateZ = 0,
   as: Component = "div",
   onClick,
   href,
   target,
   ...props
 }) => {
-  const style = {
-    transform: `translateZ(${translateZ}px)`,
-  };
+  
 
   if (Component === "a") {
     return (
@@ -25,7 +22,7 @@ export const CardItem: React.FC<CardItemProps> = ({
         href={href}
         target={target}
         className={className}
-        style={style}
+        
         onClick={onClick}
         {...props}
       >
@@ -38,7 +35,7 @@ export const CardItem: React.FC<CardItemProps> = ({
     return (
       <button
         className={className}
-        style={style}
+        
         onClick={onClick}
         {...props}
       >
@@ -49,14 +46,14 @@ export const CardItem: React.FC<CardItemProps> = ({
 
   if (Component === "p") {
     return (
-      <p className={className} style={style} {...props}>
+      <p className={className} {...props}>
         {children}
       </p>
     );
   }
 
   return (
-    <div className={className} style={style} onClick={onClick} {...props}>
+    <div className={className} onClick={onClick} {...props}>
       {children}
     </div>
   );

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import ProductCard from "../ui/ProductCard";
-import { Product } from "@/types/product/productCard";
+import { Product } from "@/types/product/productCardTypes";
 
 interface ProductGridProps {
     products: Product[];

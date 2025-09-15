@@ -1,6 +1,5 @@
 "use client";
 
-import { useCustomTranslator } from "@/hooks/useCustomTranslator";
 import { useTheme } from "@/hooks/useThemeContext";
 import { Moon, Sun, Monitor } from "lucide-react";
 import { useState } from "react";
@@ -8,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
-  const { translate } = useCustomTranslator();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -19,7 +17,7 @@ const ThemeSwitcher = () => {
     setIsOpen(false);
   };
 
-  
+
   const itemVariants = {
     closed: { x: -10, opacity: 0 },
     open: { x: 0, opacity: 1 }
@@ -81,15 +79,14 @@ const ThemeSwitcher = () => {
                 initial="closed"
                 animate="open"
                 transition={{ delay: 0.1 }}
-                className={`flex items-center w-full px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:cursor-pointer ${
-                  theme === "light" 
-                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" 
+                className={`flex items-center w-full px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:cursor-pointer ${theme === "light"
+                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
                     : "text-gray-700 dark:text-gray-300"
-                }`}
+                  }`}
                 onClick={() => handleThemeChange("light")}
               >
                 <Sun className="w-4 h-4 mr-3" />
-                {translate("লাইট", "Light")}
+                Light
               </motion.button>
 
               <motion.button
@@ -97,15 +94,14 @@ const ThemeSwitcher = () => {
                 initial="closed"
                 animate="open"
                 transition={{ delay: 0.15 }}
-                className={`flex items-center w-full px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:cursor-pointer ${
-                  theme === "dark" 
-                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" 
+                className={`flex items-center w-full px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:cursor-pointer ${theme === "dark"
+                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
                     : "text-gray-700 dark:text-gray-300"
-                }`}
+                  }`}
                 onClick={() => handleThemeChange("dark")}
               >
                 <Moon className="w-4 h-4 mr-3" />
-                {translate("ডার্ক", "Dark")}
+                Dark
               </motion.button>
 
               <motion.button
@@ -113,15 +109,14 @@ const ThemeSwitcher = () => {
                 initial="closed"
                 animate="open"
                 transition={{ delay: 0.2 }}
-                className={`flex items-center w-full px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:cursor-pointer ${
-                  theme === "system" 
-                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400" 
+                className={`flex items-center w-full px-4 py-3 text-sm transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:cursor-pointer ${theme === "system"
+                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
                     : "text-gray-700 dark:text-gray-300"
-                }`}
+                  }`}
                 onClick={() => handleThemeChange("system")}
               >
                 <Monitor className="w-4 h-4 mr-3" />
-                {translate("সিস্টেম", "System")}
+                System
               </motion.button>
             </div>
           </motion.div>

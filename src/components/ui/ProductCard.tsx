@@ -6,7 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaRegHeart } from "react-icons/fa";
 import { CardBody, CardContainer, CardItem } from "./3d-card";
-import { ProductCardProps } from "@/types/product/productCard";
+import { ProductCardProps } from "@/types/product/productCardTypes";
 import { useCart } from "@/hooks/CartContext";
 import { useWishlist } from "@/hooks/WishlistContext";
 import Button from "../reusable-components/Button";
@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <CardContainer className={`inter-var ${className}`}>
-      <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-4 border transition-all duration-300">
+      <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-cyan-500 border-cyan-300 w-full h-auto rounded-xl p-4 border transition-all duration-300">
         {/* Badges */}
         <div className="absolute top-2 right-2 z-10 flex gap-2">
           {product.isNew && (
@@ -75,18 +75,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* Category */}
         {showCategory && product.category && (
           <CardItem
-            translateZ="20"
-            className="text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-1 "
-          >
+            className="text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-1 ">
             {product.category}
           </CardItem>
         )}
 
         {/* Product Image */}
-        <CardItem translateZ="100" className="w-full mt-8 relative">
-          <div onClick={()=> router.push('/products/product-details/premium-wireless-headphones')} className={`relative hover:cursor-pointer w-full ${imageHeight} overflow-hidden rounded-xl px-1 py-4 `}>
+        <CardItem className="w-full mt-8 relative">
+          <div onClick={() => router.push(`/products/product-details/${product.slug}`)} className={`relative hover:cursor-pointer w-full ${imageHeight} overflow-hidden rounded-xl px-1 py-4 `}>
             <Image
-              src={product.imageUrl}
+              src={product.imageUrl[0]}
               alt={product.name}
               fill
               className="object-cover group-hover/card:shadow-xl transition-all duration-300"
@@ -97,7 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Product Name */}
         <CardItem
-          translateZ="50"
+
           className="text-lg font-bold text-neutral-700 dark:text-white mt-4 line-clamp-1"
         >
           {product.name}
@@ -106,7 +104,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* Product Description */}
         <CardItem
           as="p"
-          translateZ="60"
+
           className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 line-clamp-2"
         >
           {product.description}
@@ -114,7 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Rating */}
         {showRating && product.rating && (
-          <CardItem translateZ="30" className="flex items-center mt-2">
+          <CardItem className="flex items-center mt-2">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <svg
@@ -137,7 +135,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
 
         {/* Price */}
-        <CardItem translateZ="40" className="flex items-center mt-3">
+        <CardItem className="flex items-center mt-3">
           <span className="text-xl font-bold text-neutral-700 dark:text-white">
             ${product.price.toFixed(2)}
           </span>
@@ -152,18 +150,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {showActions && (
           <div className="flex justify-between items-center mt-6">
             <Button
-              translateZ="20"
               as="button"
               onClick={handleQuickView}
-              className="px-4 py-2 hover:cursor-pointer rounded-xl text-xs font-normal dark:text-white text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-            >
+              className="px-4 py-2 hover:cursor-pointer rounded-xl text-xs font-normal dark:text-white text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
               Quick View
             </Button>
-
-
-
             <Button
-              translateZ="20"
               as="button"
               onClick={handleWishlist}
               className="p-2 rounded-xl hover:cursor-pointer text-xs font-normal text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
@@ -195,7 +187,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
 
             <Button
-              translateZ="20"
               as="button"
               onClick={handleAddToCart}
               className="px-4 py-2 rounded-xl hover:cursor-pointer bg-gradient-to-r from-cyan-600 to-blue-700 text-white text-xs font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"

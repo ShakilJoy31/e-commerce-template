@@ -1,7 +1,8 @@
 // components/product/ProductInformation.tsx
 import { motion } from "framer-motion";
-import { Product } from "@/types/product/productCard";
+import { Product } from "@/types/product/productCardTypes";
 import { CheckCircle, Shield, RotateCcw } from "lucide-react";
+import Heading from "../reusable-components/Heading";
 
 interface ProductInformationProps {
   product: Product;
@@ -34,15 +35,15 @@ export default function ProductInformation({ product }: ProductInformationProps)
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
-      className="border rounded-lg p-4 dark:border-gray-700"
+      className="border border-cyan-300 rounded-lg p-4 dark:border-gray-700"
     >
-      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+      <Heading className="text-xl font-medium text-gray-900 dark:text-white mb-4">
         Product Information
-      </h3>
+      </Heading>
       
       <div className="space-y-4">
         <div>
-          <h4 className="font-medium text-gray-900 dark:text-white mb-2">Key Features</h4>
+          <Heading className="font-medium text-gray-900 text-lg dark:text-white mb-2">Key Features</Heading>
           <ul className="space-y-2">
             {features.map((feature, index) => (
               <motion.li 
@@ -60,7 +61,7 @@ export default function ProductInformation({ product }: ProductInformationProps)
         </div>
         
         <div>
-          <h4 className="font-medium text-gray-900 dark:text-white mb-2">Guarantees</h4>
+          <Heading className="font-medium text-gray-900 dark:text-white mb-2 text-lg">Guarantees</Heading>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {guarantees.map((guarantee, index) => (
               <motion.div
@@ -85,7 +86,7 @@ export default function ProductInformation({ product }: ProductInformationProps)
         </div>
         
         <div>
-          <h4 className="font-medium text-gray-900 dark:text-white mb-2">Category</h4>
+          <Heading className="font-medium text-gray-900 dark:text-white mb-2 text-lg">Category</Heading>
           <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/30 dark:text-blue-300">
             {product.category}
           </span>
@@ -93,7 +94,7 @@ export default function ProductInformation({ product }: ProductInformationProps)
         
         {product.tags && product.tags.length > 0 && (
           <div>
-            <h4 className="font-medium text-gray-900 dark:text-white mb-2">Tags</h4>
+            <Heading className="font-medium text-gray-900 dark:text-white mb-2 text-lg">Tags</Heading>
             <div className="flex flex-wrap gap-2">
               {product.tags.map((tag, index) => (
                 <span

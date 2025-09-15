@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Star } from "lucide-react";
-import { useCustomTranslator } from "@/hooks/useCustomTranslator";
 import { FaComments } from "react-icons/fa6";
 import Button from "../reusable-components/Button";
 import { TextareaField } from "../reusable-components/CustomTextArea";
+import Heading from "../reusable-components/Heading";
+import Paragraph from "../reusable-components/Paragraph";
+import { ReviewCard } from "./ReviewCard";
 
 interface Review {
     id?: string;
@@ -38,7 +40,6 @@ export default function TabsSection({
     reviews = [],
     productName = "",
 }: TabsSectionProps) {
-    const { translate } = useCustomTranslator();
     const [activeTab, setActiveTab] = useState(Tabs[0]);
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState(0);
@@ -70,7 +71,7 @@ export default function TabsSection({
     const averageRating = 4.5;
 
     return (
-        <div className="mt-10 space-y-6 dark:text-white">
+        <div className="space-y-6 dark:text-white">
             {/* Tabs */}
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -107,9 +108,9 @@ export default function TabsSection({
                         className="space-y-6 text-sm"
                     >
                         <div>
-                            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-                                {translate(`${productName} Specifications`, `${productName} Specifications`)}
-                            </h2>
+                            <Heading className="text-lg font-semibold text-gray-800 dark:text-white">
+                                {productName} Specifications
+                            </Heading>
                             <div className="mt-4 text-gray-700 dark:text-white">
                                 {specification ? (
                                     <div
@@ -117,9 +118,9 @@ export default function TabsSection({
                                         dangerouslySetInnerHTML={{ __html: specification }}
                                     />
                                 ) : (
-                                    <p className="text-gray-500 dark:text-white">
-                                        {translate("স্পেসিফিকেশন পাওয়া যায়নি", "No specifications available")}
-                                    </p>
+                                    <Paragraph className="text-gray-500 dark:text-white">
+                                        No specifications available
+                                    </Paragraph>
                                 )}
                             </div>
                         </div>
@@ -137,9 +138,9 @@ export default function TabsSection({
                         className="space-y-6 text-sm text-gray-700"
                     >
                         <div>
-                            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-                                {translate("পণ্যের বিবরণ", "Product Description")}
-                            </h2>
+                            <Heading className="text-lg font-semibold text-gray-800 dark:text-white">
+                                Product Description
+                            </Heading>
                             {description ? (
                                 description.includes('<') ? (
                                     <div
@@ -149,33 +150,30 @@ export default function TabsSection({
                                 ) : (
                                     <div className="mt-3 space-y-2">
                                         {description.split('\n').map((paragraph, index) => (
-                                            paragraph.trim() && <p key={index}>{paragraph}</p>
+                                            paragraph.trim() && <Paragraph className="text-sm dark:text-gray-300" key={index}>{paragraph}</Paragraph>
                                         ))}
                                     </div>
                                 )
                             ) : (
-                                <p className="mt-3 text-gray-500 dark:text-white">
-                                    {translate("বিবরণ পাওয়া যায়নি", "No description available")}
-                                </p>
+                                <Paragraph className="mt-3 text-gray-500 dark:text-white">
+                                    No description available
+                                </Paragraph>
                             )}
                         </div>
                         <div>
-                            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-                                {translate("পণ্যের বিবরণ", "Product Details")}
-                            </h2>
+                            <Heading className="text-lg font-semibold text-gray-800 dark:text-white">
+                                Product Details
+                            </Heading>
                             <ul className="mt-3 space-y-2">
                                 <li className="flex items-start gap-2">
                                     <CheckCircle2 className="text-blue-500 mt-1" size={16} />
-                                    <span>
-                                        {translate(
-                                            "পার্সোনাল প্রোটেক্টিভ ইকুইপমেন্ট হিসাবে ব্যবহারের উদ্দেশ্যে নয়",
-                                            "Not intended for use as Personal Protective Equipment"
-                                        )}
+                                    <span className="text-gray-700 dark:text-gray-300">
+                                        Not intended for use as Personal Protective Equipment
                                     </span>
                                 </li>
                                 <li className="ml-6">
-                                    <span className="text-orange-600 font-semibold cursor-pointer hover:underline dark:bg-black dark:text-white">
-                                        {translate("আরও দেখুন", "See More")}
+                                    <span className="text-cyan-600 font-semibold cursor-pointer hover:underline">
+                                        See More
                                     </span>
                                 </li>
                             </ul>
@@ -194,9 +192,10 @@ export default function TabsSection({
                         className="space-y-6 text-sm text-gray-700"
                     >
                         <div>
-                            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-                                {translate("গ্রাহকদের প্রতিক্রিয়া", "Customers Feedback")}
-                            </h2>
+                            <Heading className="text-lg font-semibold text-gray-800 dark:text-white">
+                                Customers Feedback
+                            </Heading>
+
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 dark:bg-black dark:text-white">
                                 <div className="bg-cyan-50 rounded-xl p-6 text-center dark:bg-black dark:text-white dark:border dark:border-white">
                                     <div className="text-4xl font-bold text-cyan-500">{averageRating.toFixed(1)}</div>
@@ -211,7 +210,7 @@ export default function TabsSection({
                                         ))}
                                     </div>
                                     <div className="mt-2 text-sm text-gray-700 dark:text-gray-300 ">
-                                        {translate("পণ্য রেটিং", "Product Rating")}
+                                        Product Rating
                                     </div>
                                 </div>
 
@@ -255,31 +254,31 @@ export default function TabsSection({
                                     ))}
                                     <div className="text-right">
                                         <Button variant={'outline'} className="text-cyan-600 hover:cursor-pointer font-semibold hover:underline">
-                                            {translate("সমস্ত রিভিউ দেখুন", "View All Review")}
+                                            View All Review
                                         </Button>
                                     </div>
                                 </>
                             ) : (
-                                <p className="text-gray-500 dark:text-white">
-                                    {translate("কোন রিভিউ পাওয়া যায়নি", "No reviews available")}
-                                </p>
+                                <Paragraph className="text-gray-500 dark:text-white">
+                                    No reviews available
+                                </Paragraph>
                             )}
                         </div>
 
                         {/* Write a Review */}
                         <div className="pt-4 dark:text-white">
-                            <h3 className="text-base font-semibold text-gray-800 dark:text-white">
-                                {translate("একটি রিভিউ লিখুন", "Write a Review")}
-                            </h3>
-                            <p className="mt-1 dark:text-white">
-                                {translate("পণ্যটি কেমন?", `What is it like to ${productName}?`)}
-                            </p>
+                            <Heading className="text-base font-semibold text-gray-800 dark:text-white">
+                                Write a Review
+                            </Heading>
+                            <Paragraph className="mt-1 dark:text-white">
+                                What is it like to {productName}
+                            </Paragraph>
                             <div className="flex gap-1 mt-2 dark:text-white">
                                 {[...Array(5)].map((_, i) => (
                                     <Star
                                         key={i}
                                         className={`cursor-pointer ${(hoverRating || reviewRating) > i
-                                            ? 'text-yellow-400'
+                                            ? 'text-cyan-400'
                                             : 'text-gray-300'
                                             }`}
                                         size={20}
@@ -293,7 +292,7 @@ export default function TabsSection({
 
                             <div className="mt-[30px] dark:text-white">
                                 <TextareaField
-                                    label="Review Content"
+                                    label="Review This Product"
                                     name="review"
                                     placeholder="What's on your mind?"
                                     icon={<FaComments className="h-5 w-5 text-gray-400" />}
@@ -312,57 +311,5 @@ export default function TabsSection({
                 )}
             </AnimatePresence>
         </div>
-    );
-}
-
-function ReviewCard({
-    name,
-    daysAgo,
-    rating,
-    content,
-}: {
-    name: string;
-    daysAgo?: number;
-    rating: number;
-    content: string;
-}) {
-    const { translate } = useCustomTranslator();
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="bg-gray-50 p-4 rounded-md border border-gray-300 space-y-2 dark:bg-black dark:text-white"
-        >
-            <div className="dark:bg-black dark:text-white flex items-center gap-3">
-                <div className="dark:bg-black dark:border-cyan-600 dark:text-white w-8 h-8 bg-gradient-to-r from-cyan-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold">
-                    {name.charAt(0)}
-                </div>
-                <div className="dark:bg-black dark:text-white">
-                    <div className="font-semibold text-gray-800 dark:bg-black dark:text-white">{name}</div>
-                    {daysAgo !== undefined && (
-                        <div className="text-xs text-gray-500 dark:bg-black dark:text-white">
-                            {translate(`${daysAgo} দিন আগে`, `${daysAgo} days ago`)}
-                        </div>
-                    )}
-                </div>
-            </div>
-            <div className="flex gap-1 dark:bg-black dark:text-white">
-                {[...Array(5)].map((_, i) => (
-                    <Star
-                        key={i}
-                        className={`${i < rating ? 'text-cyan-400' : 'text-gray-300'}`}
-                        size={20}
-                        fill={i < rating ? "currentColor" : "none"}
-                    />
-                ))}
-            </div>
-            <p className="text-gray-600 dark:bg-black dark:text-white">{content}</p>
-            <div className="flex gap-4 mt-2 text-sm text-blue-600 font-medium cursor-pointer dark:bg-black dark:text-white">
-                <span>{translate("👍 পছন্দ", "👍 Like")}</span>
-                <span>{translate("💬 উত্তর", "💬 Reply")}</span>
-            </div>
-        </motion.div>
     );
 }

@@ -1,6 +1,8 @@
 // components/product/DeliveryOptions.tsx
 import { motion } from "framer-motion";
 import { Truck, Clock, MapPin, CheckCircle } from "lucide-react";
+import Heading from "../reusable-components/Heading";
+import Paragraph from "../reusable-components/Paragraph";
 
 export default function DeliveryOptions() {
   const deliveryOptions = [
@@ -29,11 +31,11 @@ export default function DeliveryOptions() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="border rounded-lg p-4 dark:border-gray-700"
+      className="border border-cyan-300 rounded-lg p-4 dark:border-gray-700"
     >
-      <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+      <Heading className="text-lg font-medium text-gray-900 dark:text-white mb-4">
         Delivery Options
-      </h3>
+      </Heading>
       <div className="space-y-3">
         {deliveryOptions.map((option, index) => (
           <motion.div
@@ -49,12 +51,12 @@ export default function DeliveryOptions() {
             <div className="flex-1">
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="font-medium text-gray-900 dark:text-white">
+                  <Heading className="font-medium text-gray-900 dark:text-white text-lg">
                     {option.title}
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  </Heading>
+                  <Paragraph className="text-sm text-gray-600 dark:text-gray-400">
                     {option.description}
-                  </p>
+                  </Paragraph>
                 </div>
                 <span className="text-sm text-gray-500 dark:text-gray-400">
                   {option.time}

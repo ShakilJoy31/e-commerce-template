@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import Button from "./Button";
-import { IConfirmationModalProps } from "@/types/product/productCard";
+import { IConfirmationModalProps } from "@/types/product/productCardTypes";
 
 export const ConfirmationModal: React.FC<IConfirmationModalProps> = ({
   isOpen,

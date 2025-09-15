@@ -1,5 +1,6 @@
 // components/product/PriceSection.tsx
 import { motion } from "framer-motion";
+import Paragraph from "../reusable-components/Paragraph";
 
 interface PriceSectionProps {
   price: number;
@@ -34,9 +35,9 @@ export default function PriceSection({ price, originalPrice }: PriceSectionProps
       </div>
       
       {originalPrice && originalPrice > price && (
-        <p className="text-sm text-green-600 dark:text-green-400">
+        <Paragraph className="text-sm text-green-600 dark:text-green-400">
           You save ${(originalPrice - price).toFixed(2)}
-        </p>
+        </Paragraph>
       )}
     </motion.div>
   );
