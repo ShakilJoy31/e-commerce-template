@@ -29,8 +29,8 @@ export default function NewsletterContent() {
 
             {/* Right side - Form */}
             <form className="flex flex-col space-y-4">
+                <Paragraph>Enter Your Email</Paragraph>
                 <InputField
-                    label="Enter your email"
                     name="email"
                     type="email"
                     placeholder="Type Your Email"

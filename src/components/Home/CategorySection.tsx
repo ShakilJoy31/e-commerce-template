@@ -198,8 +198,8 @@ export default function CategorySection({
 
                 {/* Product Info Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <Heading className="text-2xl font-bold mb-2">{selectedProduct.name}</Heading>
-                  <div className="flex items-center mb-4">
+                  <Heading className="text-xl font-bold mb-2">{selectedProduct.name}</Heading>
+                  <div className="flex items-center">
                     <div className="flex text-cyan-400">
                       {[...Array(5)].map((_, i) => (
                         <Star
@@ -376,7 +376,7 @@ export default function CategorySection({
                   </div>
 
                   <div className="p-4 bg-white dark:bg-gray-800">
-                    <Heading className="font-semibold text-gray-900 dark:text-white mb-1 line-clamp-1">
+                    <Heading className="font-semibold text-gray-900 dark:text-white mb-1 line-clamp-1 text-lg ">
                       {product.name}
                     </Heading>
                     <div className="flex items-center mb-2">

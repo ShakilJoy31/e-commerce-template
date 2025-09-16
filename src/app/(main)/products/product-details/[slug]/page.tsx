@@ -1,4 +1,3 @@
-// app/products/[slug]/page.tsx
 import ProductDetail from "@/components/Products/ProductDetails";
 import { generateDynamicMetadata } from "@/metadata/generateMetadata";
 import { Product } from "@/types/product/productCardTypes";
