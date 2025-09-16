@@ -155,9 +155,7 @@ export default function PublicNav() {
         >
           <Image
             src={navbarLogo}
-            alt="Company Logo"
-            width={160}
-            height={64}
+            alt="Template Logo"
             priority
             className="w-full h-auto"
           />

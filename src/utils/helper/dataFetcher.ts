@@ -1,13 +1,11 @@
+// utils/helper/dataFetcher.ts
 import { Product } from "@/types/product/productCardTypes";
+import { baseUrl } from "../constant/appConfiguration";
 
-// utils/dataHelpers.ts
 export async function getProductsData() {
   try {
     // In production
-    const response = await fetch(`${'https://e-commerce-template-olive-seven.vercel.app'}/products.json`);
-    
-    // For development only - if you want to use absolute path
-    // const response = await fetch('http://localhost:3000/products.json');
+    const response = await fetch(`${baseUrl}/products.json`);
     
     if (!response.ok) {
       throw new Error('Failed to fetch products data');
@@ -26,9 +24,6 @@ export async function getProductBySlug(slug: string) {
   return products.find((product: Product) => product.slug === slug);
 }
 
-
-
-// utils/helper/dataFetcher.ts
 export async function getRecommendedProducts(currentProductId: string, count: number = 4) {
   const products = await getProductsData();
   
@@ -37,4 +32,16 @@ export async function getRecommendedProducts(currentProductId: string, count: nu
     .filter((product: Product) => product.id !== currentProductId)
     .sort(() => 0.5 - Math.random())
     .slice(0, count);
+}
+
+export async function getProductsByCategory(category: string) {
+  const products = await getProductsData();
+  return products.filter((product: Product) => product.category === category);
+}
+
+export async function getAllCategories() {
+  const products = await getProductsData();
+  // Get unique categories from products
+  const categories = [...new Set(products.map((product: Product) => product.category))];
+  return categories.map(category => ({ name: category }));
 }

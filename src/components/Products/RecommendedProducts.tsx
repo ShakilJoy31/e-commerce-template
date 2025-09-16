@@ -63,14 +63,19 @@ export default function RecommendedProducts({
 
     return (
         <div className="mt-12">
-            <Heading
+            <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-                You might also like
-            </Heading>
+            >
+                <Heading
+                    level={2}
+                    className="text-xl font-bold text-gray-900 dark:text-white mb-6"
+                >
+                    You might also like
+                </Heading>
+            </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {recommendedProducts.map((product, index) => (

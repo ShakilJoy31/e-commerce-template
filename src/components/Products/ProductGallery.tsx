@@ -19,9 +19,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showZoomOptions, setShowZoomOptions] = useState(false);
-  const [currentZoomScale, setCurrentZoomScale] = useState(2); // Default zoom level
-
-  console.log(product);
+  const [currentZoomScale, setCurrentZoomScale] = useState(2);
 
   const images: string[] = Array.isArray(product.imageUrl) && product.imageUrl.length > 0
     ? product.imageUrl
@@ -59,8 +57,9 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
         onMouseMove={handleMouseMove}
         onClick={() => setIsZoomed(true)}
       >
+        {/* This div now has relative positioning for the fill image */}
         <div
-          className="w-full h-full cursor-zoom-in transform-gpu transition-transform duration-100"
+          className="relative w-full h-full cursor-zoom-in transform-gpu transition-transform duration-100"
           style={{
             transform: isHovered ? `scale(${currentZoomScale})` : "scale(1)",
             transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`,
@@ -70,7 +69,9 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
             src={images[selectedImageIndex]}
             alt={product.name}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
+            priority // Add priority to the main product image
           />
         </div>
 
@@ -146,7 +147,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
         </div>
       </div>
 
-      {/* Thumbnail Navigation */}
+      {/* Thumbnail Navigation - No priority needed for thumbnails */}
       <div className="grid grid-cols-4 gap-2">
         {images.map((image, index) => (
           <Button
@@ -163,6 +164,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
                 src={image}
                 alt={`${product.name} view ${index + 1}`}
                 fill
+                sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 15vw"
                 className="object-cover cursor-pointer"
               />
             </div>
@@ -170,7 +172,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
         ))}
       </div>
 
-      {/* Zoom Modal */}
+      {/* Zoom Modal - No priority needed for modal images */}
       <AnimatePresence>
         {isZoomed && (
           <motion.div
@@ -190,6 +192,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
                 src={images[selectedImageIndex]}
                 alt={product.name}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                 className="object-contain"
               />
             </motion.div>

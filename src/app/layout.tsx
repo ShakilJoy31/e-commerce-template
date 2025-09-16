@@ -1,7 +1,5 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/reusable-components/ThemeProvider";
-import { LocaleProvider } from "../components/reusable-components/LocaleProvider";
 import { appConfiguration } from "@/utils/constant/appConfiguration";
 import Providers from "../hooks/Providers";
 import { Toaster } from "react-hot-toast";
@@ -9,15 +7,6 @@ import { CartProvider } from "@/hooks/CartContext";
 import { WishlistProvider } from "@/hooks/WishlistContext";
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 // export async function generateMetadata(): Promise<Metadata> {
 //   // For the root layout, we want the default values, so we call without parameters
@@ -32,20 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={` antialiased`} suppressHydrationWarning={true}>
         <Providers>
           {" "}
           <ThemeProvider
             defaultTheme="light"
             storageKey={`${appConfiguration.appCode}theme`}>
-            <LocaleProvider>
-              <CartProvider>
-                <WishlistProvider>
-                  {children}
-                </WishlistProvider>
-              </CartProvider>
-            </LocaleProvider>
+            <CartProvider>
+              <WishlistProvider>
+                {children}
+              </WishlistProvider>
+            </CartProvider>
           </ThemeProvider>
           <Toaster />
         </Providers>

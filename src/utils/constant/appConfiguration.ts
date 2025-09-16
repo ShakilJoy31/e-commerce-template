@@ -27,3 +27,10 @@ export const appConfiguration: IConfigurationProps = {
   progressMessage:
     "Thank you for your interest! 🚀 We're currently working on implementing this feature. Stay tuned, as we'll be activating it very soon!",
 };
+
+// Development Url.........
+// http://localhost:3000
+
+// Production Url........
+// https://e-commerce-template-olive-seven.vercel.app
+export const baseUrl = 'https://e-commerce-template-olive-seven.vercel.app'

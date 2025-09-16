@@ -33,7 +33,7 @@ export default function NewsletterContent() {
                     label="Enter your email"
                     name="email"
                     type="email"
-                    placeholder="Email"
+                    placeholder="Type Your Email"
                     icon={<MdEmail className="h-5 w-5 text-gray-400" />}
                     className="border border-cyan-500 rounded pl-10 pr-3 py-1.5 w-full focus:outline-none"
                 />

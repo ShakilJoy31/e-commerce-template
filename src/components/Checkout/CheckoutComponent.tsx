@@ -6,7 +6,7 @@ import Button from "../reusable-components/Button";
 
 export default function CheckoutForm() {
   const onCheckout = () => {
-    console.log("Placing order...");
+    
   };
 
   return (

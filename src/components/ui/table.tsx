@@ -14,8 +14,8 @@ const Table = <T extends {
   data,
   renderRow,
   selectedRows = [],
-  onRowSelect,
-  onSelectAll,
+  // onRowSelect,
+  // onSelectAll,
 }: TableProps<T>) => {
   return (
     <div className="overflow-x-auto rounded-lg shadow-sm border border-gray-100 bg-white dark:bg-black dark:text-white">
@@ -24,7 +24,7 @@ const Table = <T extends {
         <thead className="bg-gray-50 dark:bg-black dark:text-white">
           <tr>
             {/* "Select All" Checkbox in Header */}
-            {onRowSelect && onSelectAll && (
+            {/* {onRowSelect && onSelectAll && (
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 <div className="flex items-center">
                   <input
@@ -35,7 +35,7 @@ const Table = <T extends {
                   />
                 </div>
               </th>
-            )}
+            )} */}
             {headers.map((header, index) => (
               <th 
                 key={index} 
@@ -58,7 +58,7 @@ const Table = <T extends {
                 : 'hover:bg-gray-50 hover:dark:bg-black'}`}
             >
               {/* Row Selection Checkbox */}
-              {onRowSelect && (
+              {/* {onRowSelect && (
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
                     <input
@@ -69,7 +69,7 @@ const Table = <T extends {
                     />
                   </div>
                 </td>
-              )}
+              )} */}
               {renderRow(row, index)}
             </tr>
           ))}

@@ -46,7 +46,7 @@ export default function TabsSection({
     const [hoverRating, setHoverRating] = useState(0);
 
     const handleSubmitReview = async () => {
-        console.log('review submitted....')
+        
     };
 
     const calculateDaysAgo = (dateString: string) => {
