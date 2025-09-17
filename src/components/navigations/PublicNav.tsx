@@ -123,12 +123,15 @@ export default function PublicNav() {
     setIsOpen(false);
   }, [pathname]);
 
-  // Scroll effect
+  // Check initial scroll position and set up scroll listener
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 10);
   }, []);
 
   useEffect(() => {
+    // Check initial scroll position on mount
+    handleScroll();
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
