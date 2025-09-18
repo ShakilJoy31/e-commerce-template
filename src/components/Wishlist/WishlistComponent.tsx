@@ -12,11 +12,13 @@ import Paragraph from "../reusable-components/Paragraph";
 import Table from "../ui/table";
 import { useCart } from "@/hooks/CartContext";
 import { ConfirmationModal } from "../reusable-components/ConfirmationModal";
+import { useRouter } from "next/navigation";
 
 // ---------- Product Interface ----------
 interface Product {
   id: string | number;
   name: string;
+  slug?: string;
   price: number;
   image?: string;
 }
@@ -30,7 +32,7 @@ interface WishlistTableProps {
 
 const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
   const { items, removeFromWishlist } = useWishlist();
-  // const { addToCart } = useCart();
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [itemToRemove, setItemToRemove] = useState<string | number | null>(null);
   const [selectedItems, setSelectedItems] = useState<Product[]>([]);
@@ -104,7 +106,7 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
   // Render function for table rows
   const renderRow = (item: Product) => (
     <>
-      <td className="px-6 py-4 whitespace-nowrap">
+      <td onClick={() => router.push(`/products/product-details/${item?.slug}`)} className="px-6 py-4 whitespace-nowrap hover:cursor-pointer ">
         <div className="flex items-center gap-4">
           <div className="relative w-16 h-16 flex-shrink-0">
             <Image
@@ -130,7 +132,7 @@ const WishlistTable: React.FC<WishlistTableProps> = ({ onClear }) => {
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <Button
-          className="text-red-500 hover:text-red-700 dark:hover:text-red-400 text-xl mx-auto flex items-center justify-center p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+          className="text-red-500 hover:text-red-700 hover:cursor-pointer dark:hover:text-red-400 text-xl mx-auto flex items-center justify-center p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
           onClick={() => handleRemoveClick(item.id)}
           aria-label="Remove item"
         >

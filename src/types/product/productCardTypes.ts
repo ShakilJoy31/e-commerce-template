@@ -47,6 +47,7 @@ export interface ProductCardProps {
 export interface CartItem {
   id: string;
   name: string;
+  slug: string;
   price: number;
   quantity: number;
   image?: string;

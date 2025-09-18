@@ -21,7 +21,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   showCategory = true,
   showRating = true,
   showActions = true,
-  onQuickView,
 }) => {
   const router = useRouter();
   const { addToCart } = useCart();
@@ -32,12 +31,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
     e.preventDefault();
     e.stopPropagation();
     addToCart(product, 1);
-  };
-
-  const handleQuickView = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onQuickView?.(product);
   };
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -94,19 +87,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </CardItem>
 
         {/* Product Name */}
-        <CardItem
-
-          className="text-lg font-bold text-neutral-700 dark:text-white mt-4 line-clamp-1"
-        >
+        <CardItem onClick={() => router.push(`/products/product-details/${product.slug}`)}
+          className="text-lg font-bold text-neutral-700 hover:cursor-pointer dark:text-white mt-4 line-clamp-1">
           {product.name}
         </CardItem>
 
         {/* Product Description */}
-        <CardItem
+        <CardItem onClick={() => router.push(`/products/product-details/${product.slug}`)}
           as="p"
-
-          className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 line-clamp-2"
-        >
+          className="text-neutral-500 hover:cursor-pointer text-sm max-w-sm mt-2 dark:text-neutral-300 line-clamp-2">
           {product.description}
         </CardItem>
 
@@ -151,7 +140,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="flex justify-between items-center mt-6">
             <Button
               as="button"
-              onClick={handleQuickView}
+              onClick={() => router.push(`/products/product-details/${product.slug}`)}
               className="px-4 py-2 hover:cursor-pointer rounded-xl text-xs font-normal dark:text-white text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
               Quick View
             </Button>

@@ -1,12 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import InputField from "../ui/input";
 import Button from "../reusable-components/Button";
+import { useCart } from "@/hooks/CartContext";
+import { MdLocalShipping, MdDone } from "react-icons/md";
 
 export default function CheckoutForm() {
+  const { items } = useCart();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const [cardNumber, setCardNumber] = useState('');
+
+  // Calculate totals
+  const subtotal = items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const orderTotal = subtotal; // Add shipping/tax if needed
+
   const onCheckout = () => {
+    setIsProcessing(true);
     
+    // Simulate processing time
+    setTimeout(() => {
+      setIsProcessing(false);
+      setIsComplete(true);
+      
+      // Reset after 5 seconds
+      setTimeout(() => {
+        setIsComplete(false);
+      }, 3000);
+    }, 2000); // Processing animation duration
   };
 
   return (
@@ -57,7 +79,7 @@ export default function CheckoutForm() {
       </div>
 
       {/* Order Section */}
-      <div className="border border-gray-200 rounded-md p-6">
+      <div className="border border-cyan-500 rounded-md p-6">
         <h2 className="text-xl font-bold mb-6">Your order</h2>
 
         <div className="border-b border-gray-200 pb-4 mb-4">
@@ -65,28 +87,27 @@ export default function CheckoutForm() {
             <span className="font-medium">Product</span>
             <span className="font-medium">Total</span>
           </div>
-          <div className="flex justify-between mb-2 text-sm">
-            <span>Premium Broad bean × 1</span>
-            <span>$40</span>
-          </div>
-          <div className="flex justify-between mb-2 text-sm">
-            <span>Artisan Cold Brew Coffee Concentrate × 1</span>
-            <span>$25</span>
-          </div>
+          
+          {items.map((item) => (
+            <div key={item.id} className="flex justify-between mb-2 text-sm">
+              <span>{item.name} × {item.quantity}</span>
+              <span>${(item.price * item.quantity).toFixed(2)}</span>
+            </div>
+          ))}
         </div>
 
         <div className="flex justify-between mb-2 text-sm">
           <span>Cart Subtotal</span>
-          <span>$65</span>
+          <span>${subtotal.toFixed(2)}</span>
         </div>
         <div className="flex justify-between font-semibold text-lg mb-6">
           <span>Order Total</span>
-          <span>$65</span>
+          <span>${orderTotal.toFixed(2)}</span>
         </div>
 
         <h3 className="text-sm font-semibold mb-2">Payment With Card</h3>
         <div className="border border-gray-300 rounded-md px-4 py-3 mb-6">
-          <InputField
+          <InputField onChange={(e)=> setCardNumber(e.target.value)}
             label="Card Number *"
             className="border border-cyan-500 rounded px-3 py-1.5 w-full focus:outline-none"
             type="text"
@@ -95,9 +116,25 @@ export default function CheckoutForm() {
         </div>
 
         <Button
-          className="w-full bg-gradient-to-r hover:cursor-pointer from-cyan-600 to-blue-700 text-white py-2 rounded-md transition-colors font-medium"
-          onClick={onCheckout}>
-          Place Order
+          className={`w-full bg-gradient-to-r from-cyan-600 to-blue-700 text-white py-2 rounded-md transition-colors font-medium flex items-center justify-center ${
+            isProcessing || isComplete || cardNumber.length !== 16 ? "cursor-not-allowed" : "cursor-pointer"
+          }`}
+          onClick={onCheckout}
+          disabled={isProcessing || isComplete || cardNumber.length !== 16}
+        >
+          {isProcessing ? (
+            <div className="flex items-center justify-center w-full">
+              <MdLocalShipping size={25} className="animate-moveRight mr-2" />
+              <span>Processing...</span>
+            </div>
+          ) : isComplete ? (
+            <div className="flex items-center justify-center w-full">
+              <MdDone size={25} className="text-green-300 mr-2" />
+              <span>Order Complete!</span>
+            </div>
+          ) : (
+            "Place Order"
+          )}
         </Button>
       </div>
     </div>

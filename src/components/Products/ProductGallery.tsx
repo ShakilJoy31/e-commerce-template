@@ -155,7 +155,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
             onClick={() => setSelectedImageIndex(index)}
             className={`aspect-square overflow-hidden rounded-md border-2 ${
               selectedImageIndex === index
-                ? "border-cyan-600 border-2 dark:border-blue-400"
+                ? "border-cyan-600 border-2 dark:border-cyan-200"
                 : "border-transparent"
             }`}
           >

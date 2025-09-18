@@ -178,15 +178,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const item = state.items.find((i) => i.id === id);
     if (item) {
       dispatch({ type: "INCREMENT", payload: { id } });
-      toast.success(`Increased ${item.name} quantity!`, {
-        icon: '➕',
-        duration: 2000,
-        style: {
-          background: '#f0f9ff',
-          color: '#0369a1',
-          border: '1px solid #bae6fd',
-        },
-      });
     }
   };
 
@@ -194,15 +185,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const item = state.items.find((i) => i.id === id);
     if (item && item.quantity > 1) {
       dispatch({ type: "DECREMENT", payload: { id } });
-      toast.success(`Decreased ${item.name} quantity!`, {
-        icon: '➖',
-        duration: 2000,
-        style: {
-          background: '#f0f9ff',
-          color: '#0369a1',
-          border: '1px solid #bae6fd',
-        },
-      });
     }
   };
 
