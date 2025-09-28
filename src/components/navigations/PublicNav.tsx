@@ -7,7 +7,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-import navbarLogo from "../../../public/demo_logo.png";
+import navbarLogo from "../../../public/demo_logo_navber.png";
 import ThemeSwitcher from "../reusable-components/ThemeSwitcher";
 import LanguageSwitcher from "../reusable-components/LanguageSwitcher";
 import Button from "../reusable-components/Button";
@@ -85,20 +85,18 @@ const getDesktopLinkClasses = (isActive: boolean, isScrolled: boolean, pathname:
     specialPaths.includes(pathname) || pathname.startsWith("/products/product-details/");
 
   if (isActive) {
-    return `${baseClasses} ${
-      isSpecialPath
+    return `${baseClasses} ${isSpecialPath
         ? "text-black dark:text-white"
         : isScrolled
-        ? "text-black dark:text-white"
-        : "text-white"
-    }`;
+          ? "text-black dark:text-white"
+          : "text-white"
+      }`;
   }
 
-  return `${baseClasses} ${
-    isScrolled
+  return `${baseClasses} ${isScrolled
       ? "text-gray-700 dark:text-gray-300"
       : `dark:text-white ${isSpecialPath ? "text-black" : "text-white"}`
-  }`;
+    }`;
 };
 
 const getMobileLinkClasses = (isActive: boolean): string => {
@@ -131,7 +129,7 @@ export default function PublicNav() {
   useEffect(() => {
     // Check initial scroll position on mount
     handleScroll();
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
@@ -141,11 +139,10 @@ export default function PublicNav() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? "bg-white/95 dark:bg-[#050117]/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-800"
           : "bg-transparent border-b border-transparent"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto w-full flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
         {/* Logo */}
@@ -180,11 +177,10 @@ export default function PublicNav() {
                   {active && (
                     <motion.div
                       layoutId="nav-indicator"
-                      className={`absolute bottom-0 left-0 right-0 h-0.5 ${
-                        isScrolled
+                      className={`absolute bottom-0 left-0 right-0 h-0.5 ${isScrolled
                           ? "bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500"
                           : "bg-gradient-to-r from-blue-300 to-blue-400 dark:from-blue-300 dark:to-blue-400"
-                      }`}
+                        }`}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -264,18 +260,13 @@ export default function PublicNav() {
                 );
               })}
 
-              {/* Contact Us CTA */}
               <motion.div
                 variants={mobileItemVariants}
                 initial="closed"
                 animate="open"
                 transition={{ delay: navLinks.length * 0.1 }}
-                className="pt-2"
               >
-                <Link
-                  href="/contact"
-                  className="block w-full hover:cursor-pointer px-4 py-3 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-medium text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg"
-                >
+                <Link href="/contact" className={getMobileLinkClasses(isActiveLink(pathname, "/contact"))}>
                   Contact Us
                 </Link>
               </motion.div>

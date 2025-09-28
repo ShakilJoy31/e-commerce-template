@@ -26,7 +26,7 @@ export default function HomeBanner() {
                     priority
                 />
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/50"></div>
+                <div className="absolute inset-0 bg-black/80"></div>
             </div>
 
             {/* Content */}
@@ -45,7 +45,7 @@ export default function HomeBanner() {
                     initial="hidden"
                     animate="visible"
                     transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                    className="text-white/90 mt-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed"
+                    className="text-white/90 mt-6 max-w-4xl mx-auto text-base md:text-lg leading-relaxed"
                 >
                     Discover a powerful e-commerce platform built with cutting-edge technology
                     that delivers exceptional shopping experiences. Our solution offers seamless

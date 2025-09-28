@@ -97,7 +97,7 @@ export default function CategorySection({
       {/* Section Header */}
       <div className="text-center mb-6">
         <Heading className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Featured Categories
+          Browse Products by Category
         </Heading>
         <Paragraph className="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
           Discover our premium collection of products across various categories
@@ -105,15 +105,11 @@ export default function CategorySection({
       </div>
 
       <div className="relative mb-6">
-        <div className="flex items-center justify-between mb-6">
-          <Heading className="text-xl font-semibold text-gray-900 dark:text-white">Browse by Category</Heading>
-        </div>
-
         <div className="relative">
           <div
             id="category-tabs"
             ref={scrollContainerRef}
-            className="flex overflow-x-auto scrollbar-hide space-x-4 bg-cyan-100 rounded-full"
+            className="flex overflow-x-auto scrollbar-hide space-x-4 bg-cyan-100 rounded-full w-max max-w-full mx-auto"
           >
             {categories.map((cat) => (
               <Button
@@ -146,11 +142,10 @@ export default function CategorySection({
                     });
                   }
                 }}
-                className={`flex-shrink-0 hover:cursor-pointer px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  activeCategory === cat.name
+                className={`flex-shrink-0 hover:cursor-pointer px-6 py-3 rounded-full font-medium transition-all duration-300 ${activeCategory === cat.name
                     ? "bg-gradient-to-r from-cyan-600 to-blue-700 text-white shadow-lg"
                     : "text-gray-700 "
-                }`}
+                  }`}
               >
                 {cat.name}
               </Button>

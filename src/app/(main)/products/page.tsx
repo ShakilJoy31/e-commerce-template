@@ -1,12 +1,10 @@
-
-
 import { ProductListing } from "@/components/Products/ProductListing";
 import { generateDynamicMetadata } from "@/metadata/generateMetadata";
 import { getProductsData } from "@/utils/helper/dataFetcher";
 
 export async function generateMetadata() {
   return generateDynamicMetadata({
-    title: "Premium Online Store | Products ",
+    title: "Premium Online Store | Products",
     description: "Discover amazing products at unbeatable prices. Shop the latest trends in electronics, fashion, home goods and more. Free shipping on orders over $50. Secure checkout guaranteed.",
     keywords: [
       "online shopping", "ecommerce store", "buy products online",
@@ -17,7 +15,7 @@ export async function generateMetadata() {
   });
 }
 
-const Home = async () => {
+const ProductsPage = async () => {
   const products = await getProductsData();
   return (
     <div className="bg-[#F4F6F8] dark:bg-gray-600">
@@ -26,5 +24,4 @@ const Home = async () => {
   )
 }
 
-export default Home;
- 
+export default ProductsPage;

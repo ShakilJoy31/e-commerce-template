@@ -1,7 +1,7 @@
 import { FaTelegramPlane, FaWhatsapp, FaInstagram, FaFacebookF, FaPhoneAlt } from "react-icons/fa";
 import { MdLocationOn, MdEmail, MdPayment } from "react-icons/md";
 import Image from "next/image";
-import siteLogo from "../../../public/demo_logo.png";
+import siteLogo from "../../../public/demo_logo_footer.png";
 import Paragraph from "../reusable-components/Paragraph";
 import Heading from "../reusable-components/Heading";
 import Link from "next/link";
@@ -24,7 +24,7 @@ export default function Footer() {
               alt="E-Shop Logo"
               width={160}
               height={60}
-              className="w-48 h-12 object-contain"
+              className="w-72 h-28 object-contain"
             />
           </div>
           <Paragraph className="text-sm mb-4">

@@ -1,7 +1,7 @@
-// components/common/Pagination.tsx
 "use client";
 
 import { useState, useEffect } from "react";
+import Button from "./Button";
 
 export interface PaginationProps {
   totalPages: number;
@@ -31,6 +31,7 @@ const Pagination = ({
   }, []);
 
   const getPageNumbers = (): (number | string)[] => {
+    if (totalPages <= 1) return [1];
     if (totalPages <= visiblePages) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
@@ -65,7 +66,7 @@ const Pagination = ({
           <select
             value={pageSize}
             onChange={(e) => onPageSizeChange(Number(e.target.value))}
-            className="border rounded px-2 py-1 text-sm bg-white dark:bg-black dark:text-white dark:border-gray-300"
+            className="border border-cyan-500 rounded px-2 py-1 text-sm bg-white dark:bg-gray-800 dark:text-white dark:border-gray-600"
           >
             {[5, 10, 20, 30, 50].map((size) => (
               <option key={size} value={size}>
@@ -77,39 +78,39 @@ const Pagination = ({
       )}
 
       <div className="flex items-center">
-        <button
+        <Button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`rounded-tl-sm p-[11px] rounded-bl-sm border-[#777777] border disabled:opacity-50 text-sm sm:text-base hover:cursor-pointer ${currentPage === 1 ? 'text-black dark:text-white' : 'bg-[#EE5A2C] text-white'}`}
+          className={`rounded-tl-sm p-[11px] rounded-bl-sm border-cyan-500 border disabled:opacity-50 text-sm sm:text-base hover:cursor-pointer ${currentPage === 1 ? 'text-black dark:text-white' : 'bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-medium text-center '}`}
         >
           Previous
-        </button>
+        </Button>
 
         <div className="flex items-center">
           {getPageNumbers().map((page, index) => (
-            <button
+            <Button
               key={index}
               onClick={() => typeof page === "number" && onPageChange(page)}
-              className={`min-w-[36px] p-[11px] border-[#777777] ${getPageNumbers()?.length !== index +1 ? 'border-r' : ''} border-t border-b text-sm sm:text-base ${
+              className={`min-w-[36px] p-[11px] border-cyan-500 ${index < getPageNumbers().length - 1 ? 'border-r' : ''} border-t border-b text-sm sm:text-base ${
                 page === currentPage
-                  ? "bg-[#F53E32] text-white"
+                  ? "bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-medium text-center "
                   : "hover:cursor-pointer"
               } ${
                 typeof page !== "number" && "pointer-events-none cursor-default"
               }`}
             >
               {page}
-            </button>
+            </Button>
           ))}
         </div>
 
-        <button
+        <Button
           onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className={`p-[11px] rounded-tr-sm rounded-br-sm border-[#777777] border disabled:opacity-50 text-sm sm:text-base hover:cursor-pointer ${currentPage === totalPages ? 'text-black dark:text-white' : 'bg-[#EE5A2C] text-white'}`}
+          disabled={currentPage === totalPages || totalPages === 0}
+          className={`p-[11px] rounded-tr-sm rounded-br-sm border-cyan-500 border disabled:opacity-50 text-sm sm:text-base hover:cursor-pointer ${currentPage === totalPages || totalPages === 0 ? 'text-black dark:text-white' : 'bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-medium text-center '}`}
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );
