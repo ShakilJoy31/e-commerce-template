@@ -26,8 +26,6 @@ const CartTable: React.FC<CartTableProps> = ({ onClear, onCheckout }) => {
   const [itemToRemove, setItemToRemove] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<CartItem[]>([]);
 
-  console.log(items);
-
   const handleClearClick = () => {
     setIsModalOpen(true);
   };
