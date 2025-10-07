@@ -16,13 +16,13 @@ const TopSoldProducts: React.FC<TopSoldProductsProps> = ({ products }) => {
   return (
     <section className="container mx-auto px-4 py-8">
       <Heading className="text-3xl font-bold text-center mb-8">Our Top Sold Products</Heading>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {topSoldProducts.map((product, index) => (
           <ProductCard
             key={index}
             product={product}
             className="hover:scale-105 transition-transform"
-            imageHeight="h-64"
+            imageHeight="h-54"
             showCategory={true}
             showRating={true}
             showActions={true}

@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { RxReset } from "react-icons/rx";
-import { FiChevronDown, FiSearch } from "react-icons/fi";
-import InputField from "../ui/input";
+import { FiSearch } from "react-icons/fi";
 import Button from "./Button";
 import { LANGS } from "@/utils/constant/languageConstant";
+import { IoLanguage } from "react-icons/io5";
 
 // types ...
 declare global {
@@ -128,49 +127,42 @@ export default function LanguageSwitcher() {
       <div id="google_translate_element" className="hidden" />
 
       <div className="relative">
-        <div className="flex items-center gap-1 bg-white dark:bg-gray-800 border border-cyan-500 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
+        <div className="flex items-center gap-1 relative dark:bg-gray-800 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
           <Button
             type="button"
             onClick={() => setIsOpen((o) => !o)}
-            className="text-gray-800 dark:text-gray-100 hover:cursor-pointer py-2 pl-3 pr-2 w-32 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150 rounded-l-lg"
-            aria-label="Select language"
-          >
+            className="text-gray-800 dark:text-gray-100 bg-gray-100 hover:cursor-pointer py-2 pl-3 pr-2 w-12 flex justify-between items-center dark:bg-gray-700 transition-colors duration-150 rounded-lg"
+            title="Select Language"
+            aria-label="Select language">
             <span className="truncate text-sm font-medium">
-              {LANGS.find(
-                (lang) => lang.code.toLowerCase() === selectedLang?.toLowerCase()
-              )?.label || "Select Language"}
+              <IoLanguage className="w-5 h-5"></IoLanguage>
             </span>
-            <FiChevronDown 
-              className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-            />
           </Button>
-
-          <Button
-            type="button"
-            onClick={() => translateTo("en")}
-            className="p-2 hover:bg-gray-100 hover:cursor-pointer dark:hover:bg-gray-700 border-l border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150 rounded-r-lg"
-            aria-label="Reset to English"
-            title="Reset to English"
-          >
-            <RxReset size={18} />
-          </Button>
+         
         </div>
 
         {isOpen && (
-          <div className="absolute z-50 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col animate-fadeIn">
+          <div className="absolute right-0 z-50 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col animate-fadeIn">
             <div className="border-b border-cyan-500 pl-3 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
               <div className="relative">
-                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
-                <InputField
+                <FiSearch className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+                <input
                   type="text"
                   placeholder="Search languages..."
-                  className="w-full pr-3 py-3 text-sm bg-white dark:bg-gray-800 rounded-md outline-none transition-colors duration-200"
+                  className="w-full pl-6 py-3 text-sm bg-white dark:bg-gray-800 rounded-md outline-none transition-colors duration-200 text-black"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   autoFocus={true}
                 />
               </div>
             </div>
+
+            <Button title="Reset to English" onClick={() => translateTo("en")}
+              type="button"
+              className={`w-full text-left hover:cursor-pointer px-4 py-1.5 text-sm border-t border-b border-red-600 bg-red-100 text-red-600 transition-colors duration-150 flex items-center`}>
+              Reset to English
+            </Button>
+
             <div className="overflow-y-auto max-h-64 py-1 scrollbar-hide scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
               {filteredLangs.length > 0 ? (
                 filteredLangs.map((l) => (
@@ -182,11 +174,10 @@ export default function LanguageSwitcher() {
                       setIsOpen(false);
                       setSearchTerm("");
                     }}
-                    className={`w-full text-left hover:cursor-pointer px-4 py-2.5 text-sm hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors duration-150 flex items-center ${
-                      selectedLang === l.code 
-                        ? "bg-cyan-100 dark:bg-blue-900/30 text-cyan-700 dark:text-blue-300 font-medium" 
+                    className={`w-full text-left hover:cursor-pointer px-4 py-2.5 text-sm hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors duration-150 flex items-center ${selectedLang === l.code
+                        ? "bg-cyan-100 dark:bg-blue-900/30 text-cyan-700 dark:text-blue-300 font-medium"
                         : "text-gray-700 dark:text-gray-300"
-                    }`}
+                      }`}
                   >
                     {l.label}
                     {selectedLang === l.code && (

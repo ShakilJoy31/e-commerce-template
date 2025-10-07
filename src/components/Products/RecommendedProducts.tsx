@@ -77,16 +77,15 @@ export default function RecommendedProducts({
                 </Heading>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                 {recommendedProducts.map((product, index) => (
                     <motion.div
                         key={product.id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                        <ProductCard product={product} />
+                        transition={{ duration: 0.5, delay: index * 0.1 }}>
+                        <ProductCard imageHeight="h-54" product={product} />
                     </motion.div>
                 ))}
             </div>
