@@ -243,6 +243,11 @@ export default function PublicNav() {
             className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 overflow-hidden"
           >
             <div className="px-4 py-4 flex flex-col space-y-3 h-screen">
+               <div className="flex xs:hidden items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-800 mt-4">
+                 <LanguageSwitcher />
+                 <ThemeSwitcher />
+              </div>
+
               {navLinks.map((link, index) => {
                 const active = isActiveLink(pathname, link.path);
                 return (
@@ -270,12 +275,7 @@ export default function PublicNav() {
                   Contact Us
                 </Link>
               </motion.div>
-
-              {/* Footer (Mobile only) */}
-              <div className="flex xs:hidden items-center justify-between pt-6 border-t border-gray-200 dark:border-gray-800 mt-4">
-                <LanguageSwitcher />
-                <ThemeSwitcher />
-              </div>
+             
             </div>
           </motion.div>
         )}

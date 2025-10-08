@@ -144,7 +144,7 @@ export default function LanguageSwitcher() {
         </div>
 
         {isOpen && (
-          <div className="absolute right-0 z-50 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col animate-fadeIn">
+          <div className="absolute left-0 md:right-0 z-50 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col animate-fadeIn">
             <div className="border-b border-cyan-500 pl-3 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
               <div className="relative">
                 <FiSearch className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
