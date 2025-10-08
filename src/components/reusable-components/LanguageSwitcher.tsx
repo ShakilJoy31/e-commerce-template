@@ -4,6 +4,8 @@ import { FiSearch } from "react-icons/fi";
 import Button from "./Button";
 import { LANGS } from "@/utils/constant/languageConstant";
 import { IoLanguage } from "react-icons/io5";
+import resetToEng from "../../../public/Screenshot (1183).png"
+import Image from "next/image";
 
 // types ...
 declare global {
@@ -138,7 +140,7 @@ export default function LanguageSwitcher() {
               <IoLanguage className="w-5 h-5"></IoLanguage>
             </span>
           </Button>
-         
+
         </div>
 
         {isOpen && (
@@ -159,8 +161,12 @@ export default function LanguageSwitcher() {
 
             <Button title="Reset to English" onClick={() => translateTo("en")}
               type="button"
-              className={`w-full text-left hover:cursor-pointer px-4 py-1.5 text-sm border-t border-b border-red-600 bg-red-100 text-red-600 transition-colors duration-150 flex items-center`}>
-              Reset to English
+              className={`w-full text-left hover:cursor-pointer transition-colors duration-150 flex items-center`}>
+              <Image
+                src={resetToEng}
+                alt="Template Logo"
+                className="w-full h-auto"
+              />
             </Button>
 
             <div className="overflow-y-auto max-h-64 py-1 scrollbar-hide scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
@@ -175,8 +181,8 @@ export default function LanguageSwitcher() {
                       setSearchTerm("");
                     }}
                     className={`w-full text-left hover:cursor-pointer px-4 py-2.5 text-sm hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors duration-150 flex items-center ${selectedLang === l.code
-                        ? "bg-cyan-100 dark:bg-blue-900/30 text-cyan-700 dark:text-blue-300 font-medium"
-                        : "text-gray-700 dark:text-gray-300"
+                      ? "bg-cyan-100 dark:bg-blue-900/30 text-cyan-700 dark:text-blue-300 font-medium"
+                      : "text-gray-700 dark:text-gray-300"
                       }`}
                   >
                     {l.label}
