@@ -11,13 +11,13 @@ import { useCart } from "@/hooks/CartContext";
 import { useWishlist } from "@/hooks/WishlistContext";
 import Button from "../reusable-components/Button";
 import { useRouter } from "next/navigation";
-
+import { FaCartArrowDown } from "react-icons/fa";
 
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   className = "",
-  imageHeight = "h-60",
+  imageHeight = "h-36 md:h-44 lg:h-54",
   showCategory = true,
   showRating = true,
   showActions = true,
@@ -50,14 +50,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <CardContainer className={`inter-var ${className}`}>
-      <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-cyan-500 border-cyan-300 w-full h-auto rounded-xl p-4 border transition-all duration-300">
+      <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-cyan-500 border-cyan-300 w-full h-auto rounded-xl p-1 md:p-2 lg:p-3 xl:p-4 border transition-all duration-300">
         {/* Badges */}
         <div className="absolute top-2 right-2 z-10 flex gap-2">
-          {product.isNew && (
-            <span className="px-2 py-1 bg-blue-500 text-white text-xs font-bold rounded-xl ">
-              NEW
-            </span>
-          )}
           {product.isSale && discountPercentage > 0 && (
             <span className="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-xl ">
               -{discountPercentage}%
@@ -137,7 +132,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Actions */}
         {showActions && (
-          <div className="flex justify-between items-center mt-6">
+          <div className="flex justify-between items-center mt-2 md:mt-4 lg:mt-6">
             <Button
               as="button"
               onClick={() => router.push(`/products/product-details/${product.slug}`)}
@@ -180,7 +175,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
               onClick={handleAddToCart}
               className="px-4 py-2 rounded-xl hover:cursor-pointer bg-gradient-to-r from-cyan-600 to-blue-700 text-white text-xs font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
             >
-              Add to Cart
+              <span className="hidden md:block ">Add to Cart</span>
+              <span  className="block md:hidden "><FaCartArrowDown size={20}></FaCartArrowDown></span>
             </Button>
           </div>
         )}
