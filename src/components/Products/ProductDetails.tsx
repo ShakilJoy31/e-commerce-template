@@ -15,19 +15,22 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ product, recommendedProducts }: ProductDetailProps) {
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 ">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="container bg-cyan-50 mx-auto p-4 rounded-md py-20">
+            <div className="flex flex-col lg:flex-row gap-8">
                 {/* Left Column - Product Gallery */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
+                    className="lg:w-[35%]"
                 >
                     <ProductGallery product={product} />
                 </motion.div>
 
-                {/* Right Column - Product Details */}
+               <div className="lg:w-3/5 bg-white p-2 rounded-lg ">
+                 {/* Right Column - Product Details */}
                 <ProductDetailsSection product={product} />
+               </div>
             </div>
 
             {/* Additional Information Section */}

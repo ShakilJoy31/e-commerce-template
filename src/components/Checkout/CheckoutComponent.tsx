@@ -35,7 +35,7 @@ export default function CheckoutForm() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-7xl mx-auto p-6 mt-12 ">
       {/* Billing Section */}
       <div className="border border-cyan-500 rounded-md">
-        <h2 className="text-xl font-bold mb-4 text-center shadow shadow-cyan-500 rounded-tr-md rounded-tl-md py-2">Billing To</h2>
+        <h2 className="text-xl font-bold mb-4 text-center shadow shadow-cyan-500 rounded-tr-md rounded-tl-md py-2 bg-cyan-50">Billing To</h2>
 
         <div className="space-y-3 px-6 pb-6">
           <InputField
@@ -80,7 +80,7 @@ export default function CheckoutForm() {
 
       {/* Order Section */}
       <div className="border border-cyan-500 rounded-md">
-        <h2 className="text-xl font-bold mb-4 text-center shadow shadow-cyan-500 rounded-tr-md rounded-tl-md py-2">Your order</h2>
+        <h2 className="text-xl font-bold mb-4 text-center shadow shadow-cyan-500 rounded-tr-md rounded-tl-md py-2 bg-cyan-50">Your order</h2>
 
         <div className="px-6 pb-6">
           <div className="border-b border-gray-200 pb-4 mb-4">

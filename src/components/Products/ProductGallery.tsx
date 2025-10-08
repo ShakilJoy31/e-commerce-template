@@ -148,7 +148,7 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
       </div>
 
       {/* Thumbnail Navigation - No priority needed for thumbnails */}
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-6 gap-2">
         {images.map((image, index) => (
           <Button
             key={index}
