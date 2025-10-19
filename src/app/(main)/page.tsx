@@ -1,6 +1,7 @@
 // app/page.tsx
 import HomeBanner from "@/components/Home/Banner";
 import CategorySection from "@/components/Home/CategorySection";
+import ContactModal from "@/components/Home/ContactModal";
 import NewProduct from "@/components/Home/NewProduct";
 import NewsletterSection from "@/components/Home/NewsletterSection";
 import OfferProducts from "@/components/Home/OfferedProducts";
@@ -22,24 +23,19 @@ export async function generateMetadata() {
   });
 }
 
-// Update the interface to reflect that searchParams is a Promise
 interface HomeProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 const Home = async ({ searchParams }: HomeProps) => {
-  // Await the searchParams promise first
   const resolvedSearchParams = await searchParams;
   
-  // Get category from URL params or use default
   const category = typeof resolvedSearchParams.category === 'string'
     ? resolvedSearchParams.category
     : "Electronics";
 
-  // Fetch products data on the server
   const products = await getProductsData();
 
-  // Fetch categories and products for the selected category
   const rawCategories = await getAllCategories();
   const categories = rawCategories.map((cat: { name: string }) => ({
     ...cat,
@@ -61,6 +57,9 @@ const Home = async ({ searchParams }: HomeProps) => {
       />
       <WhyUs></WhyUs>
       <NewsletterSection></NewsletterSection>
+      
+      {/* Contact Modal */}
+      <ContactModal />
     </div>
   )
 }
